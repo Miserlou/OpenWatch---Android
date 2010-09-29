@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/tile"
+    >
+    <ImageView
+    	android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content"
+	    android:src="@drawable/logo"
+	    android:scaleType="fitCenter"
+	    android:layout_gravity="center_horizontal"
+	    android:padding="10dip" >
+    </ImageView>
+
+    <ImageButton
+    	android:id="@+id/ib"
+        android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content"
+	    android:src="@drawable/grey"
+	    android:scaleType="fitCenter"
+	    android:layout_gravity="center_horizontal"
+	    android:padding="10dip"
+	    android:hapticFeedbackEnabled="true"
+	    android:background="@drawable/none"
+    ></ImageButton>
+    
+</LinearLayout>
