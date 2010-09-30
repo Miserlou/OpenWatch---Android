@@ -26,4 +26,8 @@
 	    android:background="@drawable/none"
     ></ImageButton>
     
+     <VideoRecorder android:id="@+id/camcorder_preview"
+         android:layout_width="50dip" android:layout_height="50dip"
+         android:enabled="false" android:focusable="true" android:clickable="true" />
+    
 </LinearLayout>

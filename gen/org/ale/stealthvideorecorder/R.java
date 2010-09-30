@@ -20,6 +20,7 @@ public final class R {
         public static final int tile=0x7f020006;
     }
     public static final class id {
+        public static final int camcorder_preview=0x7f050001;
         public static final int ib=0x7f050000;
     }
     public static final class layout {
