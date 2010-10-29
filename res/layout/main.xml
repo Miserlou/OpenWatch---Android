@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -25,9 +26,5 @@
 	    android:hapticFeedbackEnabled="true"
 	    android:background="@drawable/none"
     ></ImageButton>
-    
-     <VideoRecorder android:id="@+id/camcorder_preview"
-         android:layout_width="50dip" android:layout_height="50dip"
-         android:enabled="false" android:focusable="true" android:clickable="true" />
     
 </LinearLayout>

@@ -1,43 +1,58 @@
 package org.ale.stealthvideorecorder;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnTouchListener;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity {
     /** Called when the activity is first created. */
     
     public boolean recording = false;
     final Handler mHandler = new Handler();
-    private recordService r_service;
     private boolean m_servicedBind = false;
-    
-    private ServiceConnection m_connection = new ServiceConnection(){
-
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            r_service = recordService.Stub.asInterface(service);
-            System.out.println("onServiceConnected");
-            }
-
-        public void onServiceDisconnected(ComponentName name) {
-            r_service = null;
-            }
-    };
-    
+    private VideoRecorder vr;
+    private RecorderActivity ra;
+    private MainActivityGroup mag;
+    private LinearLayout root;
+    Context c;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,16 +60,25 @@ public class MainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
         
+        vr = (VideoRecorder) findViewById(R.id.camcorder_preview);
+        c = this;
+        
+    }
+    
+    public void activateButton() {
+        final ImageButton ib = (ImageButton) findViewById(R.id.ib);
+        ib.setClickable(true);
+        ib.setImageResource(R.drawable.grey);
+        recording = false;
     }
     
     public void onResume() {
         super.onResume();
         final ImageButton ib = (ImageButton) findViewById(R.id.ib);
+        root = (LinearLayout) findViewById(R.id.root);
         final Context c = this;
-        
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        final SharedPreferences.Editor editor = prefs.edit();
-        final boolean running = prefs.getBoolean("running", false);
+
+        final MainActivity ma = this;
         
         ib.setOnTouchListener(new OnTouchListener() {
 
@@ -63,61 +87,47 @@ public class MainActivity extends Activity {
                 if(event.getAction() != MotionEvent.ACTION_DOWN) {
                     return false;
                 }
-
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-                final SharedPreferences.Editor editor = prefs.edit();
-                boolean runn = prefs.getBoolean("running", false);
                 
-                System.out.println("Running is..");
-                System.out.println(runn);
+                if(ra.hidden) {
+                    return false;
+                }
                 
-                try {
-                    if(runn){
-                        if(r_service.running()){
-                            ib.setImageResource(R.drawable.grey);
-                            recording = false;
-                            r_service.stop();
-                            editor.putBoolean("running", false);
-                            editor.commit();
-                            Toast.makeText(c, "Recording stopped!", Toast.LENGTH_SHORT).show();
-                            stopService(new Intent(c, rService.class));
-                            r_service = null;
-                            startService(new Intent(c, rService.class));
-                            bindService();
-                        }
-    
+                    if(recording){
                     return true;
                 }
                    
                     else {
+                        mHandler.postDelayed(new Runnable() {
+
+                            public void run() {
+                                recording = true;
+//                                Toast.makeText(c, "Recording started!", Toast.LENGTH_SHORT).show();
+                                ib.setClickable(false);
+                                ra.start();
+                            }}, 400);
+
                         ib.setImageResource(R.drawable.red);
-                        recording = true;
-                        r_service.start();
-                        editor.putBoolean("running", true);
-                        editor.commit();
-                        Toast.makeText(c, "Recording started!", Toast.LENGTH_SHORT).show();
-                        finish();
                         return true;
                         }
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            
-            return true;
             }
         });
         
-       if(running) {
+       if(recording) {
            ib.setImageResource(R.drawable.red);
        }
-       
-       startService(new Intent(this, rService.class));
-       bindService();
     }
        
     
-    private void bindService(){
-        m_servicedBind = bindService(new Intent(this, rService.class), 
-                m_connection, Context.BIND_AUTO_CREATE);
+    public void setRecorderActivity(RecorderActivity raa) {
+        ra = raa;
     }
+
+    public void setParentGroup(MainActivityGroup magg) {
+        mag = magg;
+    }
+    
+    public FrameLayout getFL() {
+        return (FrameLayout)findViewById(R.id.Recorder);
+    }
+    
 }
