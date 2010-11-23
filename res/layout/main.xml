@@ -12,19 +12,53 @@
 	    android:src="@drawable/logo"
 	    android:scaleType="fitCenter"
 	    android:layout_gravity="center_horizontal"
-	    android:padding="10dip" >
+	    android:paddingLeft="10dip"
+	    android:paddingRight="10dip"
+	    android:paddingTop="30dip"
+	    android:paddingBottom="120dip" >
     </ImageView>
 
-    <ImageButton
-    	android:id="@+id/ib"
-        android:layout_width="wrap_content" 
-	    android:layout_height="wrap_content"
-	    android:src="@drawable/grey"
-	    android:scaleType="fitCenter"
-	    android:layout_gravity="center_horizontal"
-	    android:padding="10dip"
-	    android:hapticFeedbackEnabled="true"
-	    android:background="@drawable/none"
-    ></ImageButton>
+    		    <Button
+    		    android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:id="@+id/aib"
+		        android:text="Record Audio"
+            	android:layout_gravity="center"
+				android:layout_width="250dip" 
+    			android:layout_height="90dip"
+    			android:textColor="#000000"
+    			android:background="@drawable/button"
+    			android:shadowColor="#ffffff"
+    			android:shadowDy="-1"
+    			android:shadowRadius="1"
+    			android:singleLine="true"
+    			android:ellipsize="none"
+    			android:padding="20dip" />
+    			
+	        	<TextView  
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text=" "
+			    android:id="@+id/s1"
+		    	android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:gravity="center" />
+    
+    		    <Button
+    		    android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:id="@+id/ib"
+		        android:text="Record Video"
+            	android:layout_gravity="center"
+				android:layout_width="250dip" 
+    			android:layout_height="90dip"
+    			android:textColor="#000000"
+    			android:background="@drawable/button"
+    			android:shadowColor="#ffffff"
+    			android:shadowDy="-1"
+    			android:shadowRadius="1"
+    			android:singleLine="true"
+    			android:ellipsize="none"
+			    android:paddingLeft="10dip"
+			    android:paddingRight="10dip"
+			    android:paddingTop="10dip"
+			    android:paddingBottom="10dip" />
     
 </LinearLayout>

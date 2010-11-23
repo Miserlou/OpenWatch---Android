@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:keepScreenOn="true"
     >
-     <org.ale.stealthvideorecorder.VideoRecorder 
+     <org.ale.openwatch.VideoRecorder 
      	 android:id="@+id/camcorder_preview"
          android:layout_width="fill_parent"
          android:layout_height="fill_parent"
