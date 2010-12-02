@@ -21,12 +21,18 @@
                   android:label="@string/app_name"
                   android:screenOrientation="portrait">
         </activity>
+                <activity android:name=".DescribeActivity"
+                  android:label="@string/app_name"
+					>
+        </activity>
         <service android:name=".rService"/>
+        <service android:name=".uService"/>
 
     </application>
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.RECORD_VIDEO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest> 

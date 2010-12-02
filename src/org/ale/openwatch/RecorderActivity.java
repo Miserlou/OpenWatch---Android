@@ -58,6 +58,10 @@ public class RecorderActivity extends Activity {
         vr.recorder.reset();
     }
     
+    public String getPath() {
+        return vr.getPath();
+    }
+    
     public void onResume() {
         super.onResume();
     }

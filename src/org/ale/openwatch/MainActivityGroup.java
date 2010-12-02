@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -27,7 +26,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -38,16 +36,18 @@ public class MainActivityGroup extends ActivityGroup {
     
     public boolean recording = false;
     final Handler mHandler = new Handler();
-    private boolean m_servicedBind = false;
+    private boolean r_servicedBind = false;
+    private boolean u_servicedBind = false;
     private VideoRecorder vr;
-    private String code = "MBUD";
-    private String codeLeft = "MBUD";
+    private String code = "BBB";
+    private String codeLeft = "BBB";
     RecorderActivity raActivity;
     MainActivity maActivity;
     private int vol;
     recordService r_service;
+    uploadService u_service;
 
-    private ServiceConnection m_connection = new ServiceConnection(){
+    private ServiceConnection r_connection = new ServiceConnection(){
 
         public void onServiceConnected(ComponentName name, IBinder service) {
             r_service = recordService.Stub.asInterface(service);
@@ -57,6 +57,19 @@ public class MainActivityGroup extends ActivityGroup {
         public void onServiceDisconnected(ComponentName name) {
             System.out.println("onServiceDisConnected");
             r_service = null;
+            }
+    };
+    
+    private ServiceConnection u_connection = new ServiceConnection(){
+
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            u_service = uploadService.Stub.asInterface(service);
+            System.out.println("onServiceConnected");
+            }
+
+        public void onServiceDisconnected(ComponentName name) {
+            System.out.println("onServiceDisConnected");
+            u_service = null;
             }
     };
 
@@ -112,19 +125,31 @@ public class MainActivityGroup extends ActivityGroup {
 //                raActivity.reset();
                 codeLeft = code;
                 
+                
+                // UPLOAD STUFF
+                // UPLOAD STUFF
+                // UPLOAD STUFF
+                // UPLOAD STUFF
+                // UPLOAD STUFF
+                
                 AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
 
-                alert2.setTitle("Recording Saved!");
-                alert2.setMessage("Would you like to view your video now? If not, you can find the video in the Gallery once it refreshes.");
-
-                alert2.setPositiveButton("Play Video", new DialogInterface.OnClickListener() {
+                alert2.setTitle(getString(R.string.recording_saved));
+                alert2.setMessage(getString(R.string.upload_recording_now));
+                final Context c = this;
+                alert2.setPositiveButton(getString(R.string.yes_upload), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    Intent tostart = new Intent(Intent.ACTION_VIEW);
-                    tostart.setDataAndType(Uri.parse(raActivity.vr.path), "video/*");
-                    startActivity(tostart);
-                    finish();
+                        mHandler.post(new Runnable() {
+
+                            public void run() {
+                                Intent mainIntent = new Intent(c, DescribeActivity.class); 
+                                startActivity(mainIntent);
+//                                    u_service.start();
+                            }});
+
+                        finish();
                 }});
-                alert2.setNegativeButton("No thank you, just quit!", new DialogInterface.OnClickListener() {
+                alert2.setNegativeButton(getString(R.string.no_quit), new DialogInterface.OnClickListener() {
                   public void onClick(DialogInterface dialog, int whichButton) {
                       finish();
                   }
@@ -140,9 +165,14 @@ public class MainActivityGroup extends ActivityGroup {
         return false;
     }
     
-    private void bindService(){
-        m_servicedBind = bindService(new Intent(this, rService.class), 
-                m_connection, Context.BIND_AUTO_CREATE);
+    private void bindRecordService(){
+        r_servicedBind = bindService(new Intent(this, rService.class), 
+                r_connection, Context.BIND_AUTO_CREATE);
+    }
+    
+    private void bindUploadService(){
+        u_servicedBind = bindService(new Intent(this, uService.class), 
+                u_connection, Context.BIND_AUTO_CREATE);
     }
 
 
@@ -255,7 +285,9 @@ public class MainActivityGroup extends ActivityGroup {
         codeLeft = code;
         
         startService(new Intent(this, rService.class));
-        bindService();
+        startService(new Intent(this, uService.class));
+        bindRecordService();
+        bindUploadService();
        
     }
 

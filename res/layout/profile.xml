@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    >
+
+<ScrollView
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+	<LinearLayout 
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:padding="4dip"
+	    >
+	    
+	    <TextView  
+		    android:id="@+id/carrier"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceLarge"
+		    android:text=""
+		    android:textColor="#EB1D1D"
+		    android:padding="7dip"
+	    />
+	    
+	    <TextView  
+		    android:id="@+id/num_desc"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceSmall"
+		    android:text="@string/title"
+		    android:textColor="#000000"
+		    android:padding="3dip"
+	    />
+	    
+	   <EditText
+	        android:id="@+id/title"
+	    	android:layout_width="fill_parent" 
+	    	android:layout_height="wrap_content" 
+	    	android:hint="@string/title_ex"
+	   		android:minLines="1"
+	   		android:maxLength="15"
+	    ></EditText>
+	    
+	    <TextView  
+		    android:id="@+id/profile_desc"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceSmall"
+		    android:text="@string/pub"
+		    android:textColor="#000000"
+		    android:padding="3dip"
+	    />
+	    
+	   <EditText
+	        android:id="@+id/pub_desc"
+	    	android:layout_width="fill_parent" 
+	    	android:layout_height="wrap_content" 
+	    	android:hint="@string/pub_ex"
+	   		android:minLines="3"
+	   		android:maxLength="140"
+	    ></EditText>
+	    
+	        <TextView  
+		    android:id="@+id/num_desc"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceSmall"
+		    android:text="@string/priv"
+		    android:textColor="#000000"
+		    android:padding="3dip"
+	    />
+	    
+	   <EditText
+	        android:id="@+id/priv_desc"
+	    	android:layout_width="fill_parent" 
+	    	android:layout_height="wrap_content" 
+	    	android:hint="@string/priv_ex"
+	   		android:minLines="1"
+	   		android:maxLength="15"
+	    ></EditText>
+	    
+	    <Button
+	    	android:id="@+id/thebutton"
+	    	android:layout_width="fill_parent" 
+	    	android:layout_height="wrap_content" 
+	    	android:text="@string/upload"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:padding="4dip"
+			android:background="@drawable/button"
+	    ></Button>
+	    
+	    <ProgressBar
+	    	android:id="@+id/progressbar"
+	    	android:padding="15dip"
+	    	android:layout_height="wrap_content"
+	    	android:layout_width="wrap_content"
+	    	android:visibility="gone"
+	    	android:layout_centerHorizontal="true"
+	        android:gravity="center"
+	        android:layout_gravity="center"
+	   	></ProgressBar>
+	    <TextView  
+		    android:id="@+id/loadingtext"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceSmall"
+		    android:text=""
+		    android:textColor="#000000"
+		    android:padding="7dip"
+	        android:gravity="center"
+	    	android:visibility="gone"
+	    	
+	    />
+	</LinearLayout>
+</ScrollView>
+
+</LinearLayout>

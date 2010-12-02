@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.IOException;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.Surface;
@@ -38,6 +40,10 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
   
   public void setPath(String patha) {
       this.path = sanitizePath(patha);
+      SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
+      final SharedPreferences.Editor editor = prefs.edit();
+      editor.putString("filepath", this.path);
+      editor.commit();
   }
 
   private String sanitizePath(String path) {
@@ -100,6 +106,10 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
     catch(Exception e) {
         System.out.println("A bad.");
     }
+  }
+  
+  public String getPath() {
+      return path;
   }
   
 public void surfaceChanged(SurfaceHolder sholder, int format, int width,
