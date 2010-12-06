@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:padding="3dp"
+              >
+    
+    <ImageView android:id="@+id/image"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:layout_marginRight="10dp"
+              /> 
+              
+    <ProgressBar android:id="@+id/progress_horizontal_note"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_toRightOf="@id/image"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+       	android:padding="7px"
+        android:max="100"
+        android:progress="00"/>
+        
+	<TextView android:id="@+id/text"
+		android:layout_toRightOf="@id/image"
+		android:padding="1px"
+			  android:text="Downloading!"
+			          android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/progress_horizontal_note"
+              android:maxLines="1"
+              android:textColor="#000"
+              android:gravity="center"
+              />
+              
+</RelativeLayout>

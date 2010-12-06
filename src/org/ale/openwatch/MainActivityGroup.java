@@ -285,9 +285,9 @@ public class MainActivityGroup extends ActivityGroup {
         codeLeft = code;
         
         startService(new Intent(this, rService.class));
-        startService(new Intent(this, uService.class));
+//        startService(new Intent(this, uService.class));
         bindRecordService();
-        bindUploadService();
+//        bindUploadService();
        
     }
 

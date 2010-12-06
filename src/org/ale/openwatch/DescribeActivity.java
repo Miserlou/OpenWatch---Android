@@ -1,8 +1,19 @@
 package org.ale.openwatch;
 
+import org.ale.openwatch.MyLocation.LocationResult;
+
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.RemoteException;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -20,6 +31,26 @@ public class DescribeActivity extends Activity{
 	Button b;
 	ProgressBar p;
 	TextView loading;
+	Location loc;
+	double lat;
+	double lon;
+	boolean hasLoc;
+	
+    uploadService u_service;
+    private boolean u_servicedBind = false;
+	
+    private ServiceConnection u_connection = new ServiceConnection(){
+
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            u_service = uploadService.Stub.asInterface(service);
+            System.out.println("onServiceConnected");
+            }
+
+        public void onServiceDisconnected(ComponentName name) {
+            System.out.println("onServiceDisConnected");
+            u_service = null;
+            }
+    };
 	
 	public void onCreate(Bundle icicle) { 
           super.onCreate(icicle); 
@@ -52,34 +83,61 @@ public class DescribeActivity extends Activity{
 				loading.setVisibility(View.VISIBLE);
 				loading.setText("Sending..");
 				
+		        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		        
+		        final SharedPreferences.Editor editor = prefs.edit();
+		        editor.putString("pub_desc", pub_desc.getText().toString());
+		        editor.putString("priv_desc", priv_desc.getText().toString());
+	            editor.putString("title", title.getText().toString());
+	            
+	            if(hasLoc) {
+	                editor.putString("location", lat + ", " + lon);
+	                System.out.println("Got location!");
+	                System.out.println(lat + ", " + lon);
+	            }
+	            
+		        editor.commit();
+				
 				Handler mHandler = new Handler();
 				mHandler.postDelayed(new Runnable(){
 
 					public void run() {
 						
-//						try {
-////							ru.authenticate();
-////							if(ru.postUser(phone.getText().toString(), profile.getText().toString())){
-//								loading.setText("Okay!");
-////								Intent i = new Intent(DescribeActivity.this, AuthenticateActivty.class);
-////								startActivity(i);
-//							}
-//							else{
-//								p.setVisibility(View.GONE);
-//								b.setPressed(false);
-//								b.setEnabled(true);
-//							}
-//						} catch (Exception e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//							b.setPressed(false);
-//							b.setEnabled(true);
-//						}
+					    try {
+                            u_service.start();
+                        } catch (RemoteException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+					    finish();
 				
 					}}, 500);
 			}});
           
-	      
+          MyLocation myLocation = new MyLocation();
+          LocationResult locationResult = new LocationResult(){
+              @Override
+              public void gotLocation(final Location location){
+                  //Got the location!
+                  System.out.println("Got location!");
+                  
+                  loc = location;
+                  if (location != null) {
+                      lat = location.getLatitude();
+                      lon = location.getLongitude();
+                  }
+                  hasLoc = true;
+                  };
+              };
+          myLocation.getLocation(this, locationResult);
+          
+          startService(new Intent(this, uService.class));
+          bindUploadService();
 	}
+	
+    private void bindUploadService(){
+        u_servicedBind = bindService(new Intent(this, uService.class), 
+                u_connection, Context.BIND_AUTO_CREATE);
+    }
 	
 }

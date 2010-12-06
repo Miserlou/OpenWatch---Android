@@ -2,4 +2,19 @@
 <resources>
     <string name="hello">Hello World, MainActivity!</string>
     <string name="app_name">OpenWatch Recorder</string>
+    <string name="record_video">Record Audio</string>
+    <string name="record_audio">Record Video</string>
+    <string name="recording_saved">Recording saved</string>
+    <string name="upload_recording_now">Would you like to upload your recording now?</string>
+    <string name="yes_upload">Yes, upload now!</string>
+    <string name="no_quit">No, just quit please</string>
+    <string name="uploading_file">Uploading file!</string>
+    <string name="title">Title</string>
+    <string name="title_ex">The name of the event</string>
+    <string name="pub">Public description</string>
+    <string name="pub_ex">ex, footage of a private security officer assaulting a man at an airport, a judge taking a bribe</string>
+    <string name="priv">Private description</string>
+    <string name="priv_ex">Any notes you may which to tell the OW admins. Remove names, change voices, etc</string>
+    <string name="upload">Upload!</string>
+    <string name="please_describe">Please describe your recording!\n</string>
 </resources>

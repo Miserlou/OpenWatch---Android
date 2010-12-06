@@ -26,6 +26,10 @@ public class uService extends Service{
     DataInputStream inputStream = null;
 
     String pathToOurFile = "";
+    String pubDesc = "";
+    String privDesc = "";
+    String title = "";
+    String location = "XXX Unavailable XXX";
     String urlServer = "http://openwatch.net/uploadnocaptcha/";
     String lineEnd = "\r\n";
     String twoHyphens = "--";
@@ -49,13 +53,10 @@ public class uService extends Service{
 
         public void start() throws RemoteException {
             
-            System.out.println("Uppin!");
             update_notification();
-            upload();
-            System.out.println("Uppin!");
             uploading=true;
-            System.out.println("Uppin!");
-            
+            upload();
+            uploading=false;
         }
         
         public void stop() throws RemoteException {
@@ -74,7 +75,7 @@ public class uService extends Service{
     // http://reecon.wordpress.com/2010/04/25/uploading-files-to-http-server-using-post-android-sdk/
     // Thanks, reecon!
     public void upload() {
-        setFile();
+        setDataFromPrefs();
         System.out.println("File path is..");
         System.out.println(pathToOurFile);
         
@@ -97,8 +98,24 @@ public class uService extends Service{
             connection.setRequestProperty("Content-Type", "multipart/form-data;boundary="+boundary);
         
             outputStream = new DataOutputStream( connection.getOutputStream() );
+            
             outputStream.writeBytes(twoHyphens + boundary + lineEnd);
-            outputStream.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\"; filename=\"" + pathToOurFile +"\"" + lineEnd);
+            outputStream.writeBytes("Content-Disposition: form-data; name=\"public_description\"" + lineEnd);
+            outputStream.writeBytes(pubDesc);
+            outputStream.writeBytes(lineEnd);
+            
+            outputStream.writeBytes(twoHyphens + boundary + lineEnd);
+            outputStream.writeBytes("Content-Disposition: form-data; name=\"private_description\"" + lineEnd);
+            outputStream.writeBytes(privDesc);
+            outputStream.writeBytes(lineEnd);
+            
+            outputStream.writeBytes(twoHyphens + boundary + lineEnd);
+            outputStream.writeBytes("Content-Disposition: form-data; name=\"location\"" + lineEnd);
+            outputStream.writeBytes(location);
+            outputStream.writeBytes(lineEnd);
+            
+            outputStream.writeBytes(twoHyphens + boundary + lineEnd);
+            outputStream.writeBytes("Content-Disposition: form-data; name=\"rec_file\"; filename=\"" + pathToOurFile +"\"" + lineEnd);
             outputStream.writeBytes(lineEnd);
         
             bytesAvailable = fileInputStream.available();
@@ -152,8 +169,12 @@ public class uService extends Service{
         pathToOurFile = f;
     }
     
-    public void setFile() {
+    public void setDataFromPrefs() {
         pathToOurFile = prefs.getString("filepath", "/");
+        pubDesc = prefs.getString("pub_desc", "No description available");
+        privDesc = prefs.getString("priv_desc", "No description available");
+        title = prefs.getString("title", "No title available");
+        location = prefs.getString("title", "No location available");
     }
 
     @Override
