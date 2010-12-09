@@ -146,7 +146,28 @@ public class MainActivity extends Activity {
                                stopService(new Intent(c, rService.class));
                                mag.r_service = null;
                                b.setVisibility(4);
-                               //finish();
+                               AlertDialog.Builder alert2 = new AlertDialog.Builder(c);
+
+                               alert2.setTitle(getString(R.string.recording_saved));
+                               alert2.setMessage(getString(R.string.upload_recording_now));
+                               alert2.setPositiveButton(getString(R.string.yes_upload), new DialogInterface.OnClickListener() {
+                               public void onClick(DialogInterface dialog, int whichButton) {
+                                       mHandler.post(new Runnable() {
+
+                                           public void run() {
+                                               Intent mainIntent = new Intent(c, DescribeActivity.class); 
+                                               startActivity(mainIntent);
+//                                                   u_service.start();
+                                           }});
+
+                                       finish();
+                               }});
+                               alert2.setNegativeButton(getString(R.string.no_quit), new DialogInterface.OnClickListener() {
+                                 public void onClick(DialogInterface dialog, int whichButton) {
+                                     finish();
+                                 }
+                               });
+                               alert2.show();
                            }
                        } catch (RemoteException e) {
                            // TODO Auto-generated catch block

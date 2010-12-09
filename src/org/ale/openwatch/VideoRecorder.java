@@ -1,7 +1,9 @@
 package org.ale.openwatch;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -39,11 +41,16 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
   }
   
   public void setPath(String patha) {
-      this.path = sanitizePath(patha);
-      SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(c);
-      final SharedPreferences.Editor editor = prefs.edit();
-      editor.putString("filepath", this.path);
-      editor.commit();
+      try {
+          File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/rpath.txt");
+          FileOutputStream fOut = new FileOutputStream(f);
+          OutputStreamWriter osw = new OutputStreamWriter(fOut); 
+          osw.write(patha);
+          osw.flush();
+          osw.close();
+      }catch(IOException e) {
+          e.printStackTrace();
+      }
   }
 
   private String sanitizePath(String path) {

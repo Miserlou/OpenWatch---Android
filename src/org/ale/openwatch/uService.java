@@ -1,11 +1,15 @@
 package org.ale.openwatch;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,6 +21,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -79,6 +84,7 @@ public class uService extends Service{
     // Thanks, reecon!
     public void upload() {
         setDataFromPrefs();
+        setDataFromPath();
         System.out.println("File path is..");
         System.out.println(pathToOurFile);
         
@@ -193,11 +199,33 @@ public class uService extends Service{
     }
     
     public void setDataFromPrefs() {
-        pathToOurFile = prefs.getString("filepath", "/");
         pubDesc = prefs.getString("pub_desc", "No description available");
         privDesc = prefs.getString("priv_desc", "No description available");
         title = prefs.getString("title", "No title available");
         location = prefs.getString("location", "No location available");
+    }
+    
+    public void setDataFromPath() {
+        FileInputStream fIn;
+            File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/rpath.txt");
+            StringBuilder contents = new StringBuilder();
+            
+            try {
+              BufferedReader input =  new BufferedReader(new FileReader(f));
+              try {
+                String line = null;
+                while (( line = input.readLine()) != null){
+                  contents.append(line);
+                }
+              }
+              finally {
+                input.close();
+              }
+              pathToOurFile = contents.toString();
+            }
+            catch (IOException ex){
+              ex.printStackTrace();
+            }
     }
 
     @Override

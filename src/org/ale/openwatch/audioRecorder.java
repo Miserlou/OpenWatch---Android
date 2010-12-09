@@ -13,12 +13,17 @@ public class audioRecorder {
 
   final MediaRecorder recorder = new MediaRecorder();
   final String path;
+  rService rs;
 
   /**
    * Creates a new audio recording at the given path (relative to root of SD card).
    */
   public audioRecorder(String path) {
     this.path = sanitizePath(path);
+  }
+  
+  public void setParent(rService arse) {
+      rs = arse;
   }
 
   private String sanitizePath(String path) {
@@ -45,7 +50,9 @@ public class audioRecorder {
     if (!directory.exists() && !directory.mkdirs()) {
       throw new IOException("Path to file could not be created.");
     }
-
+    
+    
+    rs.setPath(path);
     recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
     recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
     recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
