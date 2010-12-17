@@ -42,12 +42,17 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
   
   public void setPath(String patha) {
       try {
+          path = sanitizePath(patha);
           File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/rpath.txt");
+          f.delete();
+          f.createNewFile();
           FileOutputStream fOut = new FileOutputStream(f);
           OutputStreamWriter osw = new OutputStreamWriter(fOut); 
-          osw.write(patha);
+          osw.write(path);
           osw.flush();
           osw.close();
+          System.out.println("Video path is..");
+          System.out.println(path);
       }catch(IOException e) {
           e.printStackTrace();
       }

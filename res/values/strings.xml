@@ -17,4 +17,6 @@
     <string name="priv_ex">Any notes you may which to tell the OW admins. Remove names, change voices, etc</string>
     <string name="upload">Upload!</string>
     <string name="please_describe">Please describe your recording!\n</string>
+    <string name="location_on">Location: On</string>
+    <string name="location_off">Location: Off</string>
 </resources>

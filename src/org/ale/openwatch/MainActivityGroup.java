@@ -16,7 +16,6 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -51,11 +50,9 @@ public class MainActivityGroup extends ActivityGroup {
 
         public void onServiceConnected(ComponentName name, IBinder service) {
             r_service = recordService.Stub.asInterface(service);
-            System.out.println("onServiceConnected");
             }
 
         public void onServiceDisconnected(ComponentName name) {
-            System.out.println("onServiceDisConnected");
             r_service = null;
             }
     };
@@ -64,11 +61,9 @@ public class MainActivityGroup extends ActivityGroup {
 
         public void onServiceConnected(ComponentName name, IBinder service) {
             u_service = uploadService.Stub.asInterface(service);
-            System.out.println("onServiceConnected");
             }
 
         public void onServiceDisconnected(ComponentName name) {
-            System.out.println("onServiceDisConnected");
             u_service = null;
             }
     };
@@ -84,8 +79,6 @@ public class MainActivityGroup extends ActivityGroup {
         
         if(raActivity.hidden) {
         
-            System.out.println(codeLeft.substring(0, 1));
-            
             if (keyCode == KeyEvent.KEYCODE_BACK) {
                 if("B".equals(codeLeft.substring(0, 1))) {
                     codeLeft = codeLeft.substring(1, codeLeft.length());
@@ -122,7 +115,6 @@ public class MainActivityGroup extends ActivityGroup {
             if(codeLeft.length() == 0) {
                 raActivity.stop();
                 maActivity.activateButton();
-//                raActivity.reset();
                 codeLeft = code;
                 
                 
@@ -273,7 +265,7 @@ public class MainActivityGroup extends ActivityGroup {
         String first = prefs.getString("first_time", "fuck");
         if(first.contains("fuck")){
             new AlertDialog.Builder(this)
-            .setMessage("Welcome to Stealth Video Recorder! Thanks for purchasing! :) \n\nThis app is very simple to use. First, hit Menu to enter your unlock code, then press the record button. This will blank the screen until you enter the unlock code, which will stop recording and let you watch your saved video. \n\nHappy recording!")
+            .setMessage("Welcome to OpenWatch! \n\n This application allows opportunistic citizen journalists to invisibly record public and private officials and post the recordings to a central website, openwatch.net. A guide to using the application is availble in the Tutorial in the menu. More information about the OpenWatch can be found in the About section.")
             .setPositiveButton("Okay!", null)
             .show();
             editor2 = prefs.edit();
@@ -281,13 +273,11 @@ public class MainActivityGroup extends ActivityGroup {
             editor2.commit();
         }
         
-        code = prefs.getString("code", "MBUD");
+        code = prefs.getString("code", "BBB");
         codeLeft = code;
         
         startService(new Intent(this, rService.class));
-//        startService(new Intent(this, uService.class));
         bindRecordService();
-//        bindUploadService();
        
     }
 

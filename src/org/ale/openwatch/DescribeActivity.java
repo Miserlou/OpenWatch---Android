@@ -14,9 +14,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -31,6 +33,10 @@ public class DescribeActivity extends Activity{
 	Button b;
 	ProgressBar p;
 	TextView loading;
+	TextView locationText;
+	Button locationSwitch; 
+	boolean switchPressed = false;
+	boolean switchOn = true;
 	Location loc;
 	double lat;
 	double lon;
@@ -67,6 +73,8 @@ public class DescribeActivity extends Activity{
           priv_desc = (EditText) findViewById(R.id.priv_desc);
           b = (Button) findViewById(R.id.thebutton);
           p = (ProgressBar) findViewById(R.id.progressbar);
+          locationSwitch = (Button) findViewById(R.id.locationButton);
+          locationText = (TextView) findViewById(R.id.location_text);
           
 	      lead.setText(getString(R.string.please_describe));
           
@@ -90,10 +98,11 @@ public class DescribeActivity extends Activity{
 		        editor.putString("priv_desc", priv_desc.getText().toString());
 	            editor.putString("title", title.getText().toString());
 	            
-	            if(hasLoc) {
+	            if(hasLoc && switchOn) {
 	                editor.putString("location", lat + ", " + lon);
-	                System.out.println("Got location!");
-	                System.out.println(lat + ", " + lon);
+	            }
+	            else{
+	                editor.putString("location", "");
 	            }
 	            
 		        editor.commit();
@@ -109,10 +118,33 @@ public class DescribeActivity extends Activity{
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-					    finish();
+					    
 				
-					}}, 500);
+					}}, 200);
+				finish();
 			}});
+          
+          locationSwitch.setOnTouchListener(new OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() != MotionEvent.ACTION_DOWN) {
+                    return false;
+                }
+                
+                if(switchOn) {
+                    locationSwitch.setBackgroundResource(R.drawable.switch_right_unpressed_small);
+                    switchOn = false;
+                    locationText.setText(getString(R.string.location_off));
+                }
+                else {
+                    locationSwitch.setBackgroundResource(R.drawable.switch_left_unpressed_small);
+                    switchOn = true;
+                    locationText.setText(getString(R.string.location_on));
+                }
+                
+                
+                return false;
+            }});
           
           MyLocation myLocation = new MyLocation();
           LocationResult locationResult = new LocationResult(){

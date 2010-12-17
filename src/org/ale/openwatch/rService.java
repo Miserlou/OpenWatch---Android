@@ -78,18 +78,7 @@ public class rService extends Service{
 		super.onDestroy();
 	}
 	
-	public void setPath(String s) {
-        try {
-            File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/rpath.txt");
-            FileOutputStream fOut = new FileOutputStream(f);
-            OutputStreamWriter osw = new OutputStreamWriter(fOut); 
-            osw.write(s);
-            osw.flush();
-            osw.close();
-    	}catch(IOException e) {
-    	    e.printStackTrace();
-    	}
-	}
+
 
 
 }

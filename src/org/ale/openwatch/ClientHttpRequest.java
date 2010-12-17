@@ -166,7 +166,7 @@ public class ClientHttpRequest {
   }
 
   private static void pipe(InputStream in, OutputStream out) throws IOException {
-    byte[] buf = new byte[500000];
+    byte[] buf = new byte[32];
     int nread;
     int navailable;
     int total = 0;
@@ -174,9 +174,10 @@ public class ClientHttpRequest {
       while((nread = in.read(buf, 0, buf.length)) >= 0) {
         out.write(buf, 0, nread);
         total += nread;
+        out.flush();
       }
     }
-    out.flush();
+    
     buf = null;
   }
 

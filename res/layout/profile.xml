@@ -19,15 +19,49 @@
 	    android:padding="4dip"
 	    >
 	    
-	    <TextView  
+	    		<RelativeLayout
+		android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:padding="4dip"
+		>
+		
+			    <TextView  
 		    android:id="@+id/carrier"
-		    android:layout_width="fill_parent" 
+		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:textAppearance="?android:attr/textAppearanceLarge"
-		    android:text=""
+		    android:text="@string/please_describe"
 		    android:textColor="#EB1D1D"
-		    android:padding="7dip"
+		    
+	    	/>
+		
+			    <Button
+	    	android:id="@+id/locationButton"
+	    	android:layout_width="50dip" 
+	    	android:layout_height="wrap_content" 
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:padding="4dip"
+			android:background="@drawable/switch_left_unpressed_small"
+			android:layout_alignParentRight="true"
+	    	></Button>
+	    	
+	    		    <TextView  
+		    android:id="@+id/location_text"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceSmall"
+		    android:text="@string/location_on"
+		    android:textColor="#000000"
+		    android:padding="3dip"
+		    android:gravity="right"
+	        android:layout_below="@+id/locationButton"
+	        android:layout_alignParentRight="true"
+	    	
 	    />
+		
+		
+		</RelativeLayout>
 	    
 	    <TextView  
 		    android:id="@+id/num_desc"
@@ -95,6 +129,8 @@
 			android:padding="4dip"
 			android:background="@drawable/button"
 	    ></Button>
+	    
+
 	    
 	    <ProgressBar
 	    	android:id="@+id/progressbar"

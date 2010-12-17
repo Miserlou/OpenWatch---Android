@@ -107,7 +107,6 @@ public class MainActivity extends Activity {
 
                             public void run() {
                                 recording = true;
-//                                Toast.makeText(c, "Recording started!", Toast.LENGTH_SHORT).show();
                                 ib.setClickable(false);
                                 ra.start();
                             }}, 400);
@@ -189,17 +188,23 @@ public class MainActivity extends Activity {
                    return false;
                }
                
-               try {
-                   b.setPressed(false);
-                   b.setClickable(false);
-                   mag.r_service.start();
-                   editor.putBoolean("running", true);
-                   editor.commit();
-                   Toast.makeText(c, "Recording started!", Toast.LENGTH_SHORT).show();
-               } catch (RemoteException e) {
-                   // TODO Auto-generated catch block
-                   e.printStackTrace();
-               }
+                   mHandler.postDelayed(new Runnable() {
+
+                       public void run() {
+                           try {
+                            mag.r_service.start();
+                        } catch (RemoteException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                       }
+                   }, 400);
+               b.setPressed(false);
+               b.setClickable(false);
+                   
+               editor.putBoolean("running", true);
+               editor.commit();
+               Toast.makeText(c, "Recording started!", Toast.LENGTH_SHORT).show();
                b.setBackgroundResource(R.drawable.buttonpressed);
                finish();
                return true;

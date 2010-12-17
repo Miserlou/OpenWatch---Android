@@ -48,7 +48,6 @@ public class RecorderActivity extends Activity {
         
         vr = (VideoRecorder) findViewById(R.id.camcorder_preview);
         iv = (ImageView) findViewById(R.id.hider);
-        vr.setPath("/recordings/" + System.currentTimeMillis() + ".mp4");
         co = this;
 
     }
@@ -73,10 +72,12 @@ public class RecorderActivity extends Activity {
             hidden = true;
             
             final VideoRecorder vvv = vr;
+            vr.setPath("/recordings/" + System.currentTimeMillis() + ".mp4");
             mHandler.post(new Runnable() {
 
                 public void run() {
                     try {
+                        
                         vvv.start(co);
                     } catch (IOException e) {
                         e.printStackTrace();
