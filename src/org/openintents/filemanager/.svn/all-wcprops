@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2292/trunk/FileManager/src/org/openintents/filemanager
+END
+DirectoryContents.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2281/trunk/FileManager/src/org/openintents/filemanager/DirectoryContents.java
+END
+FileManagerProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/1859/trunk/FileManager/src/org/openintents/filemanager/FileManagerProvider.java
+END
+FileManagerActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2292/trunk/FileManager/src/org/openintents/filemanager/FileManagerActivity.java
+END
+IconifiedTextView.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2278/trunk/FileManager/src/org/openintents/filemanager/IconifiedTextView.java
+END
+ThumbnailLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2284/trunk/FileManager/src/org/openintents/filemanager/ThumbnailLoader.java
+END
+IconifiedTextListAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2290/trunk/FileManager/src/org/openintents/filemanager/IconifiedTextListAdapter.java
+END
+IconifiedText.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2278/trunk/FileManager/src/org/openintents/filemanager/IconifiedText.java
+END
+DirectoryScanner.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/2289/trunk/FileManager/src/org/openintents/filemanager/DirectoryScanner.java
+END

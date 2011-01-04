@@ -1,41 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, MainActivity!</string>
-    <string name="app_name">OpenWatch Recorder</string>
-    <string name="record_video">Record Audio</string>
-    <string name="record_audio">Record Video</string>
-    <string name="recording_saved">Recording saved</string>
-    <string name="upload_recording_now">Would you like to upload your recording now?</string>
-    <string name="yes_upload">Yes, upload now!</string>
-    <string name="no_quit">No, just quit please</string>
-    <string name="uploading_file">Uploading file!</string>
-    <string name="title">Title</string>
-    <string name="title_ex">The name of the event</string>
-    <string name="pub">Public description</string>
-    <string name="pub_ex">ex, footage of a private security officer assaulting a man at an airport, a judge taking a bribe</string>
-    <string name="priv">Private description</string>
-    <string name="priv_ex">Any notes you may which to tell the OW admins. Remove names, change voices, etc</string>
-    <string name="upload">Upload!</string>
-    <string name="please_describe">Please describe your recording!\n</string>
-    <string name="location_on">Location: On</string>
-    <string name="location_off">Location: Off</string>
-    <string name="settings">Settings</string>
-    <string name="open">Select File to Upload</string>
+    <string name="hello">aBTC</string>
+    <string name="hello2"> </string>
+    <string name="app_name">aBTC</string>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     <string name="tobegin"> Om te beginnen, gebruik van de browser, of open het menu en druk op Openen om een torrent-bestand te selecteren </string>
+     <string name="message"> \n Als de download niet beginnen wanneer u klikt op de torrent, lange klik om het op te slaan, selecteer vervolgens uit het menu Downloads. \n Ook moet u op een WiFi of een 3G verbinding, en de vloed moeten hebben vele zaden. Een bug in Android veroorzaakt af en toe een stille crash, lager bedrag van uw collega\'s om dit te voorkomen. Google is aangemeld en hopelijk zal dit worden vastgesteld in Donut. Even geduld aub! \n E-mail mij als je bugs te melden hebben. Momenteel aBTC ondersteunt alleen een download in een tijd als gevolg van de beperkte middelen van de telefoon, maar ik zal een optie als er genoeg mensen vragen netjes voor. \nBedankt voor het gebruik aBTC en gelukkig downloaden! </string>
+      <string name="working"> Werken.. </string>
+     <string name="download_complete"> Download compleet! </string>
+     <string name="pressquit"> Druk op Menu -> Afsluiten om te stoppen met seeden. </string>
+     <string name="up"> "KB/s \t\t Up: " </string>
+     <string name="down"> "Down: " </string>
+     <string name="activepeers"> "Actieve Peers: " </string>
+     <string name="data"> "\t\tData: " </string>
+     <string name="open"> Open </string>
+     <string name="settings"> Instellingen </string>
+     <string name="quit"> Sluit </string>
+     <string name="torrentdownloading"> Torrent downloaden </string>
+     <string name="percentcomplete">% van het downloaden is voltooid. </string>
+ 
     <string name="about_translators">translator-credits</string>
 	
     <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
@@ -82,13 +65,6 @@
     <string name="send_not_available">No application available for sending.</string>
     
     <string name="application_not_available">Application not available</string>
-    
-    <string name="faq">FAQ</string>
-    
-    <string name="faq_msg">How do I download things?\n\n Go to a torrent site like BTJunkie.org, look for your title, then long press on the torrent link, save it, then open it. Make sure the torrent has lots of seeders to download from.\n\nWhere are my downloads saved to?\n\nFiles are downloaded to the the downloads folder on your SDCard, and you can access those files by downloading the OI File Manager.\n\nHow can I make my downloads go faster?\n\nIf you have a powerful phone like a Droid or a Nexus One, you could try increasing the number of available peers.\n\nSometimes my downloads drop to 0kbps - what\'s going on?\n\nAlthough this should happen less now, sometimes this behavior occurs because of the nature of the cellular data network. If you find this happens, you can give it a nudge by pressing pause, then play.\n\nWill you add multiple downloads?\n\nYES! When T-Mobile releases the 2.0 update for the G1, I will activate multiple downloads for this client.\n\nI have found a bug, or I want to request a new feature, what should I do?\n\nYou can send me an email at rich@anomos.info to file bug reports or request features. I also really enjoy 5-star ratings and find myself more inspired to code when people are being nice the comments. :)\n\nHappy downloading!</string>
-    
-	<string name="search">Search for what?</string>
-	<string name="search2">Please enter your search term!</string>
 
 	<!-- ***************************
 	     Distribution

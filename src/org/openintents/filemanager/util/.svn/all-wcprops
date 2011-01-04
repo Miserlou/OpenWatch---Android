@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2277/trunk/FileManager/src/org/openintents/filemanager/util
+END
+FileUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2248/trunk/FileManager/src/org/openintents/filemanager/util/FileUtils.java
+END
+MimeTypeParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/1859/trunk/FileManager/src/org/openintents/filemanager/util/MimeTypeParser.java
+END
+MimeTypes.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2277/trunk/FileManager/src/org/openintents/filemanager/util/MimeTypes.java
+END

@@ -1,40 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, MainActivity!</string>
-    <string name="app_name">OpenWatch Recorder</string>
-    <string name="record_video">Record Audio</string>
-    <string name="record_audio">Record Video</string>
-    <string name="recording_saved">Recording saved</string>
-    <string name="upload_recording_now">Would you like to upload your recording now?</string>
-    <string name="yes_upload">Yes, upload now!</string>
-    <string name="no_quit">No, just quit please</string>
-    <string name="uploading_file">Uploading file!</string>
-    <string name="title">Title</string>
-    <string name="title_ex">The name of the event</string>
-    <string name="pub">Public description</string>
-    <string name="pub_ex">ex, footage of a private security officer assaulting a man at an airport, a judge taking a bribe</string>
-    <string name="priv">Private description</string>
-    <string name="priv_ex">Any notes you may which to tell the OW admins. Remove names, change voices, etc</string>
-    <string name="upload">Upload!</string>
-    <string name="please_describe">Please describe your recording!\n</string>
-    <string name="location_on">Location: On</string>
-    <string name="location_off">Location: Off</string>
-    <string name="settings">Settings</string>
-    <string name="open">Select File to Upload</string>
+    <string name="hello">aBTC</string>
+    <string name="hello2"> </string>
+    <string name="app_name">aBTC</string>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="tobegin">Pour commencer, utilisez le navigateur, ou ouvrez le menu et appuyez sur Ouvrir pour sélectionner un fichier torrent!</string>
+    <string name="message">Si le téléchargement ne commence pas lorsque vous cliquez sur le torrent, clic long de l\'enregistrer, puis sélectionnez dans le menu Téléchargements. \n\nAussi, vous devez être sur un réseau WiFi ou une connexion 3G, et le torrent devrait avoir beaucoup de graines. Un bug dans Android provoque parfois un crash silencieux, réduire votre quantité de pairs pour prévenir cette transmission. Google a été informée et j\'espère que ce sera corrigé dans Donut. S\'il vous plaît soyez patient!\n\nEmail moi si vous avez des bugs à signaler. Actuellement aBTC ne supporte qu\'un seul téléchargement à la fois en raison des ressources limitées du téléphone, mais je vais ajouter une option si suffisamment de gens le lui demandez gentiment sa création.\n\nMerci pour l\'utilisation et le téléchargement ABTC heureux!</string>
+    <string name="working">Travail..</string>
+    <string name="download_complete">Téléchargement complet!</string>
+    <string name="pressquit">Appuyez sur Menu -> Quitter pour arrêter le semis.</string>
+    <string name="up">" KB/s\t\tVers le haut: "</string>
+    <string name="down">"Vers le bas: "</string>
+    <string name="activepeers">"Peers Active: "</string>
+    <string name="data">"\t\tData: "</string>
+    <string name="open">Ouvrir</string>
+    <string name="settings">Paramètres</string>
+    <string name="quit">Quit</string>
+    <string name="torrentdownloading">Torrent téléchargement</string>
+    <string name="percentcomplete">% du téléchargement complet.</string>
     
     <string name="about_translators">translator-credits</string>
 	
@@ -82,13 +65,6 @@
     <string name="send_not_available">No application available for sending.</string>
     
     <string name="application_not_available">Application not available</string>
-    
-    <string name="faq">FAQ</string>
-    
-    <string name="faq_msg">How do I download things?\n\n Go to a torrent site like BTJunkie.org, look for your title, then long press on the torrent link, save it, then open it. Make sure the torrent has lots of seeders to download from.\n\nWhere are my downloads saved to?\n\nFiles are downloaded to the the downloads folder on your SDCard, and you can access those files by downloading the OI File Manager.\n\nHow can I make my downloads go faster?\n\nIf you have a powerful phone like a Droid or a Nexus One, you could try increasing the number of available peers.\n\nSometimes my downloads drop to 0kbps - what\'s going on?\n\nAlthough this should happen less now, sometimes this behavior occurs because of the nature of the cellular data network. If you find this happens, you can give it a nudge by pressing pause, then play.\n\nWill you add multiple downloads?\n\nYES! When T-Mobile releases the 2.0 update for the G1, I will activate multiple downloads for this client.\n\nI have found a bug, or I want to request a new feature, what should I do?\n\nYou can send me an email at rich@anomos.info to file bug reports or request features. I also really enjoy 5-star ratings and find myself more inspired to code when people are being nice the comments. :)\n\nHappy downloading!</string>
-    
-	<string name="search">Search for what?</string>
-	<string name="search2">Please enter your search term!</string>
 
 	<!-- ***************************
 	     Distribution
