@@ -79,7 +79,6 @@
 	    	android:layout_height="wrap_content" 
 	    	android:hint="@string/title_ex"
 	   		android:minLines="1"
-	   		android:maxLength="15"
 	    ></EditText>
 	    
 	    <TextView  
@@ -98,7 +97,6 @@
 	    	android:layout_height="wrap_content" 
 	    	android:hint="@string/pub_ex"
 	   		android:minLines="3"
-	   		android:maxLength="140"
 	    ></EditText>
 	    
 	        <TextView  
@@ -117,7 +115,6 @@
 	    	android:layout_height="wrap_content" 
 	    	android:hint="@string/priv_ex"
 	   		android:minLines="1"
-	   		android:maxLength="15"
 	    ></EditText>
 	    
 	    <Button
