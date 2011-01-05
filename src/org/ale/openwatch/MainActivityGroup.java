@@ -3,9 +3,11 @@ package org.ale.openwatch;
 import org.ale.openwatch.R;
 import org.ale.openwatch.rService;
 import org.ale.openwatch.recordService;
+import org.openintents.filemanager.FileManagerActivity;
 
 import android.app.ActivityGroup;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -70,7 +72,13 @@ public class MainActivityGroup extends ActivityGroup {
 
     
     @Override public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 9, 0, "Set Unlock Code");
+        
+        MenuItem mi = menu.add(0,0,0,R.string.open);
+        mi.setIcon(android.R.drawable.ic_menu_add);
+        MenuItem mi2 = menu.add(0,1,0,R.string.about);
+        mi2.setIcon(android.R.drawable.ic_menu_help);
+        MenuItem mi3 = menu.add(0,2,0,R.string.settings);
+        mi3.setIcon(android.R.drawable.ic_menu_preferences);
         return super.onCreateOptionsMenu(menu);
     }
     
@@ -169,7 +177,12 @@ public class MainActivityGroup extends ActivityGroup {
 
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
+        
+
         switch (item.getItemId()) {
+            case 0:
+                startActivity(new Intent(this, FileManagerActivity.class));
+                return(true);
             case 9:
                 AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
 
