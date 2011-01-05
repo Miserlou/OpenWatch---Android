@@ -186,6 +186,7 @@ public class uService extends Service{
         System.out.println("Cancelling notification.");
         if(mNotificationManager != null){
             mNotificationManager.cancel(60606);
+            done_notification();
         }
     
     }
@@ -245,17 +246,6 @@ public class uService extends Service{
     
     public void update_notification(){
 
-//        percent = (double)t1.getCompletePieces().cardinality() / (double)t1.getNrPieces();
-//        percent = percent * 100;
-//        
-//        percent = truncate(percent);
-//        if (percent == 100){
-//            pc = getString(R.string.download_complete);
-//            notification.defaults |= Notification.DEFAULT_VIBRATE;
-//            }
-//        else{
-//            pc = "\t"  + percent + getString(R.string.percentcomplete);}
-        
         if (notification == null){
             notification = new Notification(R.drawable.icon, getString(R.string.uploading_file) , System.currentTimeMillis());}
 
@@ -269,13 +259,27 @@ public class uService extends Service{
              contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         }
         
-        
-        contentView.setTextViewText(R.id.text, "...");
-//        contentView.setProgressBar(R.id.progress_horizontal_note, 100, (int)percent, false);
+        contentView.setTextViewText(R.id.text, getString(R.string.uploading_sub));
         notification.contentView = contentView;
         notification.contentIntent = contentIntent;
         mNotificationManager.notify(60606, notification);
     }
+    
+    public void done_notification(){
+      
+      notification = new Notification(R.drawable.icon, getString(R.string.upload_done) , System.currentTimeMillis());
+      contentView = new RemoteViews(getPackageName(), R.xml.progressview);
+      contentView.setImageViewResource(R.id.image, R.drawable.icon);
+      notificationIntent = new Intent(this, MainActivityGroup.class);
+      contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+      
+      contentView.setTextViewText(R.id.text, getString(R.string.upload_done));
+      notification.contentView = contentView;
+      notification.contentIntent = contentIntent;
+      mNotificationManager.notify(60616, notification);
+      mNotificationManager.cancel(60616);
+      
+  }
 
     @Override
     public void onDestroy() {
