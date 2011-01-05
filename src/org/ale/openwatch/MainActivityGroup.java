@@ -71,16 +71,7 @@ public class MainActivityGroup extends ActivityGroup {
     };
 
     
-    @Override public boolean onCreateOptionsMenu(Menu menu) {
-        
-        MenuItem mi = menu.add(0,0,0,R.string.open);
-        mi.setIcon(android.R.drawable.ic_menu_add);
-        MenuItem mi2 = menu.add(0,1,0,R.string.about);
-        mi2.setIcon(android.R.drawable.ic_menu_help);
-        MenuItem mi3 = menu.add(0,2,0,R.string.settings);
-        mi3.setIcon(android.R.drawable.ic_menu_preferences);
-        return super.onCreateOptionsMenu(menu);
-    }
+
     
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -175,7 +166,19 @@ public class MainActivityGroup extends ActivityGroup {
                 u_connection, Context.BIND_AUTO_CREATE);
     }
 
-
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        
+        MenuItem mi = menu.add(0,0,0,R.string.open);
+        mi.setIcon(android.R.drawable.ic_menu_add);
+        MenuItem mi3 = menu.add(0,2,0,R.string.tutorial);
+        mi3.setIcon(android.R.drawable.ic_menu_help);
+        MenuItem mi2 = menu.add(0,1,0,R.string.about);
+        mi2.setIcon(android.R.drawable.ic_menu_view);
+//        MenuItem mi4 = menu.add(0,2,0,R.string.settings);
+//        mi4.setIcon(android.R.drawable.ic_menu_preferences);
+        return super.onCreateOptionsMenu(menu);
+    }
+    
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         
 
@@ -183,42 +186,25 @@ public class MainActivityGroup extends ActivityGroup {
             case 0:
                 startActivity(new Intent(this, FileManagerActivity.class));
                 return(true);
-            case 9:
-                AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
-
-                alert2.setTitle("Unlock Code");
-                alert2.setMessage("What should your unlock code be? \n\n\t\tMenu:\t\t\t\t\t\t\tM\n\t\tBack:\t\t\t\t\t\t\tB\n\t\tVolume Up:\t\t\tU \n\t\tVolume Down:\t\tD");
-
-                // Set an EditText view to get user input 
-                final LinearLayout ll = (LinearLayout) getLayoutInflater().inflate(R.layout.input, null);
-                final EditText input = (EditText) ll.findViewById((R.id.input_et));
-                input.setPadding(2, 2, 2, 2);
-                input.setText(code);
-                alert2.setView(ll);
-
-                alert2.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    if(input.getText().toString() == "" || input.getText().toString() == null) {
-                        return;
-                    }
-                    if(input.getText().toString().length() < 2) {
-                        Toast.makeText(getBaseContext(), "Code is too short!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    code = input.getText().toString().toUpperCase();
-                    final SharedPreferences.Editor editor;
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-                    editor = prefs.edit();
-                    editor.putString("code", code);
-                    editor.commit();
-                    Toast.makeText(getBaseContext(), "Code Set!", Toast.LENGTH_SHORT).show();
-                }});
-                alert2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                  public void onClick(DialogInterface dialog, int whichButton) {
-                  }
-                });
-                alert2.show();
-                return true;
+            case 1:
+                // About
+                new AlertDialog.Builder(this)
+                .setTitle("About OpenWatch")
+                .setMessage(getString(R.string.about_text))
+                .setPositiveButton("Okay!", null)
+                .show();
+                return(true);
+            case 2:
+                // Tutorial 
+                new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.tutorial))
+                .setMessage(getString(R.string.tutorial_text))
+                .setPositiveButton("Okay!", null)
+                .show();
+                return(true);
+            case 3:
+                startActivity(new Intent(this, FileManagerActivity.class));
+                return(true);
             default:
                 return super.onOptionsItemSelected(item);
         }
