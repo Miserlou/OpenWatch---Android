@@ -2,7 +2,6 @@ package org.ale.openwatch;
 
 import org.ale.openwatch.R;
 import org.ale.openwatch.rService;
-import org.ale.openwatch.recordService;
 import org.openintents.filemanager.FileManagerActivity;
 
 import android.app.ActivityGroup;

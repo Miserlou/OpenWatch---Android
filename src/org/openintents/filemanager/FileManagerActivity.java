@@ -1196,7 +1196,7 @@ public class FileManagerActivity extends ListActivity {
 		
 		// Well, we gotta find a unique name at some point.
 		while (copyIndex < 500) {
-			file = FileUtils.getFile(path, context.getString(R.string.copied_file_name_2, copyIndex, fileName));
+			file = FileUtils.getFile(path, context.getString(R.string.copied_file_name, copyIndex, fileName));
 			
 			if (!file.exists()) {
 				// Nope - we can take that.
