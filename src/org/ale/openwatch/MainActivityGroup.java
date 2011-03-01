@@ -46,6 +46,7 @@ public class MainActivityGroup extends ActivityGroup {
     private int vol;
     recordService r_service;
     uploadService u_service;
+    boolean stoppedPrematurely = false;
 
     private ServiceConnection r_connection = new ServiceConnection(){
 
@@ -117,34 +118,7 @@ public class MainActivityGroup extends ActivityGroup {
                 
                 
                 // UPLOAD STUFF
-                // UPLOAD STUFF
-                // UPLOAD STUFF
-                // UPLOAD STUFF
-                // UPLOAD STUFF
-                
-                AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
-
-                alert2.setTitle(getString(R.string.recording_saved));
-                alert2.setMessage(getString(R.string.upload_recording_now));
-                final Context c = this;
-                alert2.setPositiveButton(getString(R.string.yes_upload), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                        mHandler.post(new Runnable() {
-
-                            public void run() {
-                                Intent mainIntent = new Intent(c, DescribeActivity.class); 
-                                startActivity(mainIntent);
-//                                    u_service.start();
-                            }});
-
-                        finish();
-                }});
-                alert2.setNegativeButton(getString(R.string.no_quit), new DialogInterface.OnClickListener() {
-                  public void onClick(DialogInterface dialog, int whichButton) {
-                      finish();
-                  }
-                });
-                alert2.show();
+                buildDoneDialog();
                 
             }
             return true;
@@ -153,6 +127,32 @@ public class MainActivityGroup extends ActivityGroup {
             finish();
             }
         return false;
+    }
+
+    private void buildDoneDialog() {
+        AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
+
+        alert2.setTitle(getString(R.string.recording_saved));
+        alert2.setMessage(getString(R.string.upload_recording_now));
+        final Context c = this;
+        alert2.setPositiveButton(getString(R.string.yes_upload), new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+                mHandler.post(new Runnable() {
+
+                    public void run() {
+                        Intent mainIntent = new Intent(c, DescribeActivity.class); 
+                        startActivity(mainIntent);
+//                                    u_service.start();
+                    }});
+
+                finish();
+        }});
+        alert2.setNegativeButton(getString(R.string.no_quit), new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int whichButton) {
+              finish();
+          }
+        });
+        alert2.show();
     }
     
     private void bindRecordService(){
@@ -173,8 +173,8 @@ public class MainActivityGroup extends ActivityGroup {
         mi3.setIcon(android.R.drawable.ic_menu_help);
         MenuItem mi2 = menu.add(0,1,0,R.string.about);
         mi2.setIcon(android.R.drawable.ic_menu_view);
-//        MenuItem mi4 = menu.add(0,2,0,R.string.settings);
-//        mi4.setIcon(android.R.drawable.ic_menu_preferences);
+        MenuItem mi4 = menu.add(0,3,0,"Share");
+        mi4.setIcon(android.R.drawable.ic_menu_share);
         return super.onCreateOptionsMenu(menu);
     }
     
@@ -202,7 +202,7 @@ public class MainActivityGroup extends ActivityGroup {
                 .show();
                 return(true);
             case 3:
-                startActivity(new Intent(this, FileManagerActivity.class));
+                share_it();
                 return(true);
             default:
                 return super.onOptionsItemSelected(item);
@@ -274,7 +274,9 @@ public class MainActivityGroup extends ActivityGroup {
         code = prefs.getString("code", "BBB");
         codeLeft = code;
         
-        startService(new Intent(this, rService.class));
+        Intent intent = new Intent(rService.ACTION_FOREGROUND);
+        intent.setClass(MainActivityGroup.this, rService.class);
+        startService(intent);
         bindRecordService();
        
     }
@@ -282,6 +284,10 @@ public class MainActivityGroup extends ActivityGroup {
     
     public void onResume() {
         super.onResume();
+        if(stoppedPrematurely) {
+            stoppedPrematurely = false;
+            buildDoneDialog();
+        }
     }
     
     @Override
@@ -289,11 +295,28 @@ public class MainActivityGroup extends ActivityGroup {
         super.onPause();
         AudioManager mgr = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
         mgr.setStreamVolume(AudioManager.STREAM_SYSTEM, vol, 0);
+        
+        if(raActivity != null && raActivity.isVideoRecording()) {
+            raActivity.stop();
+            maActivity.activateButton();
+            stoppedPrematurely = true;
+        }
     }
     
     public void stopMain() {
         MainActivity maActivity = (MainActivity) getLocalActivityManager().getActivity(MainActivity.class.getName());
         maActivity.finish();
+    }
+    
+    public void share_it(){
+        final String title = "OpenWatch - A Participatory Countersurveillence Project";
+        final String body = "I just became part of OpenWatch.net, a participatory countersurveillence project! #openwatch http://bit.ly/hhkWWc";
+        
+        final Intent i = new Intent(Intent.ACTION_SEND);
+        i.putExtra(Intent.EXTRA_SUBJECT, title);
+        i.putExtra(Intent.EXTRA_TEXT, body);
+        i.setType("text/plain");
+        startActivity(Intent.createChooser(i, "Share how?")); 
     }
     
        

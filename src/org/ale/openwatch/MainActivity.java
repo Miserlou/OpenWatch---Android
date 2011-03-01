@@ -18,6 +18,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -86,9 +87,15 @@ public class MainActivity extends Activity {
 
         final MainActivity ma = this;
         
-        ib.setOnTouchListener(new OnTouchListener() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final SharedPreferences.Editor editor;
+        editor = prefs.edit();
+        
+        final OnTouchListener realOTL = new OnTouchListener() {
 
             public boolean onTouch(View v, MotionEvent event) {
+                
+
                 
                 if(event.getAction() != MotionEvent.ACTION_DOWN) {
                     return false;
@@ -115,16 +122,47 @@ public class MainActivity extends Activity {
                         return true;
                         }
             }
-        });
+        };
+        
+        final OnTouchListener fakeOTL = new OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                
+                if(event.getAction() != MotionEvent.ACTION_DOWN) {
+                    return false;
+                }
+
+                    new AlertDialog.Builder(c)
+                    .setMessage("When you hit Record Video, the screen will go BLACK. It IS recording when the screen is black! To finish recording and upload, press the BACK button 3 times. Pressing HOME will also stop the recording. ")
+                    .setPositiveButton("Okay!", new OnClickListener() {
+        
+                        public void onClick(DialogInterface dialog, int which) {
+                            ib.setOnTouchListener(realOTL);
+                            
+                        }})
+                    .setTitle("IMPORTANT!!!")
+                    .show();
+                    
+                    editor.putString("warned", "shitballs");
+                    editor.commit();
+
+                return true;
+            }
+        };
+        
+        String first = prefs.getString("warned", "fuck");
+        if(first.contains("fuck")){
+            ib.setOnTouchListener(fakeOTL);
+        }
+        else{
+            ib.setOnTouchListener(realOTL);
+        }
         
        if(recording) {
            ib.setBackgroundResource(R.drawable.buttonpressed);
        }
        
        final Button b = (Button) findViewById(R.id.aib);
-       
-       SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-       final SharedPreferences.Editor editor = prefs.edit();
        boolean running = prefs.getBoolean("running", false);
        
        if(running){

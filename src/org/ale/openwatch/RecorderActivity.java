@@ -40,6 +40,8 @@ public class RecorderActivity extends Activity {
     private Activity mainer;
     Context co;
     
+    boolean recording = false;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +79,8 @@ public class RecorderActivity extends Activity {
 
                 public void run() {
                     try {
-                        
                         vvv.start(co);
+                        recording = true;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -94,6 +96,7 @@ public class RecorderActivity extends Activity {
 
                 public void run() {
                     try {
+                        recording = false;
                         vvv.stop();
                         vr.setVisibility(View.GONE);
                         iv.setVisibility(View.GONE);
@@ -118,4 +121,9 @@ public class RecorderActivity extends Activity {
     public void setFL(FrameLayout magg) {
         fl = magg;
     }
+    
+    public boolean isVideoRecording() {
+        return recording;
+    }
+    
 }
