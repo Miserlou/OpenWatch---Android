@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OpenWatch Snimanje</string>
+    <string name="record_video">Snimi audio</string>
+    <string name="record_audio">Snimi video</string>
+    <string name="recording_saved">Snimak sačuvan</string>
+    <string name="upload_recording_now">Želite li poslati snimak?</string>
+    <string name="yes_upload">Da, pošalji sada!</string>
+    <string name="no_quit">Ne, zatvori</string>
+    <string name="uploading_file">Slanje datoteke!</string>
+    <string name="title">Naziv</string>
+    <string name="title_ex">Naziv događaja</string>
+    <string name="pub">Javni opis</string>
+    <string name="pub_ex">ex, snimak napada privatnog obezbeđenja na čoveka na aerodromu, sudije koji uzima mito</string>
+    <string name="priv">Privatni opis</string>
+    <string name="priv_ex">Sve beleške koje želite uputiti administratorima OW. Uklonite imena, promenite glasove, itd</string>
+    <string name="upload">Pošalji!</string>
+    <string name="please_describe">Molimo opišite zapis!\n</string>
+    <string name="location_on">Lokacija: Uključeno</string>
+    <string name="location_off">Lokacija: Isključeno</string>
+    <string name="settings">Podešavanja</string>
+    <string name="uploading">Slanje..</string>
+    <string name="uploading_sub">Sačekajte malo</string>
+    <string name="upload_done">Slanje završeno!</string>
+    <string name="open">Odaberite datoteku za slanje</string>
+    <string name="tutorial">Uputstvo</string>
+    <string name="about_text">OpenWatch je medijski projekat čiji je cilj da, uz učešće građana, obezbedi dokumentarne dokaze upotrebe i zloupotrebe vlasti.\n\n
+
+				Do sada, tehnologija nadzora bila je isključivo u rukama onih koji su već držali vlast u rukama, što znači da se nije mogla koristiti za borbu protiv najvećeg problema modernog društva: zloupotrebe vlasti.\n\n
+				Postavlja se pitanje: Ko nadzire nadzor? \n\n
+				Tu na scenu stupa OpenWatch. Svi smo mi novinari oportunisti. Kad god neko od nas dođe u kontakt sa upotrebom ili zloupotrebom vlasti, možemo snimiti i objaviti zapis. U borbi za istinu i pravdu, moći ćemo se pozvati na dokumentarni dokaz, ne samo našu reč protiv njihove. U najboljem slučaju, to će značiti manje korupcije, otvoreniju vlast i transparentnije društvo. \n\n
+				OpenWatch nije namenjen samo objavljivanju primera zloupotrebe vlasti, nego i isticanju pravilne upotrebe. Pošto nismo tehnološki ograničeni, možemo snimiti svaku primenu vlasti, pa i analizirati globalne trendove i ostaviti zapise za istoričare budućnosti.\n\n
+				Policijo, izvršna vlasti, sudije, advokati, agenti privatnog obezbeđenja, lobisti, bankari, direktori i političari: pazite se! Mi vas gledamo! \n\n\nOpenWatch je besplatan softver, dostupan svima. Za više informacija posetite OpenWatch.net</string>
+    <string name="tutorial_text">Dobro došli, novi korisniče!\n\n Kad god pomislite da ćete imati kontakt sa predstavnikom vlasti, pokrenite OpenWatch i odaberite ili Snimi audio ili Snimi video. \n\n Ako se odlučite za audio, aplikacija će naizgled da se zatvori, ali će se audio zapis i dalje snimati. Kada se susret završi, ponovo pokrenite aplikaciju koja će zaustaviti snimanje i zatražiti opis za datoteku. Za najbolji kvalitet audio snimka, telefon staviti u prednji džep košulje, ili na obližnji sto sa mikrofonom okrenutim nagore.\n\n
+    							 Ako se odlučite za video zapis, ekran će se samo zatamniti, kao kad se telefon ugasi. Za prekid snimanja, pritisnuti taster nazad tri puta, čime se prekida snimanje i traži dozvola za postavljanje na internet. Da se snimanje ne primeti, pravite se da telefonirate.\n\n
+    							 Pri postavljanju na internet – slanju datoteke, molimo opišite događaj. Urednici će pregledati snimak i objaviti ga na OpenWatch.net. Na vaš zahtev, uklonićemo sve informacije koje mogu otkriti vaš identitet. Pristupanje serveru se ne beleži. \n\nSvaka datoteka se objavljuje pod licencom Creative-Commons-Attribution.\n\nHrabrost je zarazna!</string>    
+</resources>

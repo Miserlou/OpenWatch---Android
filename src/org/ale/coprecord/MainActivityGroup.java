@@ -1,11 +1,18 @@
-package org.ale.openwatch;
+package org.ale.coprecord;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import org.ale.coprecord.rService;
+import org.ale.coprecord.R;
+import org.ale.coprecord.recordService;
+import org.ale.coprecord.uploadService;
+import org.openintents.filemanager.FileManagerActivity;
 
 import android.app.ActivityGroup;
 import android.app.AlertDialog;
@@ -17,8 +24,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -37,6 +46,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,15 +60,12 @@ public class MainActivityGroup extends ActivityGroup {
     final Handler mHandler = new Handler();
     private boolean r_servicedBind = false;
     private boolean u_servicedBind = false;
-    private VideoRecorder vr;
     private String code = "BBB";
     private String codeLeft = "BBB";
-    RecorderActivity raActivity;
     MainActivity maActivity;
     private int vol;
     recordService r_service;
     uploadService u_service;
-    boolean stoppedPrematurely = false;
 
     private ServiceConnection r_connection = new ServiceConnection(){
 
@@ -82,90 +89,6 @@ public class MainActivityGroup extends ActivityGroup {
             }
     };
 
-    
-
-    
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        
-        if(raActivity.hidden) {
-        
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                if("B".equals(codeLeft.substring(0, 1))) {
-                    codeLeft = codeLeft.substring(1, codeLeft.length());
-                }
-                else {
-                    codeLeft = code;
-                }
-            }
-            if (keyCode == KeyEvent.KEYCODE_MENU) {
-                if("M".equals(codeLeft.substring(0, 1))) {
-                    codeLeft = codeLeft.substring(1, codeLeft.length());
-                }
-                else {
-                    codeLeft = code;
-                }
-            }
-            if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-                if("U".equals(codeLeft.substring(0, 1))) {
-                    codeLeft = codeLeft.substring(1, codeLeft.length());
-                }
-                else {
-                    codeLeft = code;
-                }
-            }
-            if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-                if("D".equals(codeLeft.substring(0, 1))) {
-                    codeLeft = codeLeft.substring(1, codeLeft.length());
-                }
-                else {
-                    codeLeft = code;
-                }
-            }
-            
-            if(codeLeft.length() == 0) {
-                raActivity.stop();
-                maActivity.activateButton();
-                codeLeft = code;
-                
-                
-                // UPLOAD STUFF
-                buildDoneDialog();
-                
-            }
-            return true;
-        }
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            }
-        return false;
-    }
-
-    private void buildDoneDialog() {
-        AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
-
-        alert2.setTitle(getString(R.string.recording_saved));
-        alert2.setMessage(getString(R.string.upload_recording_now));
-        final Context c = this;
-        alert2.setPositiveButton(getString(R.string.yes_upload), new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {
-                mHandler.post(new Runnable() {
-
-                    public void run() {
-                        Intent mainIntent = new Intent(c, DescribeActivity.class); 
-                        startActivity(mainIntent);
-//                                    u_service.start();
-                    }});
-
-                finish();
-        }});
-        alert2.setNegativeButton(getString(R.string.no_quit), new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int whichButton) {
-              finish();
-          }
-        });
-        alert2.show();
-    }
     
     private void bindRecordService(){
         r_servicedBind = bindService(new Intent(this, rService.class), 
@@ -228,23 +151,23 @@ public class MainActivityGroup extends ActivityGroup {
                                     f.delete();
                                     f.createNewFile();
                                     FileOutputStream fOut = new FileOutputStream(f);
-                                    OutputStreamWriter osw = new OutputStreamWriter(fOut);
+                                    OutputStreamWriter osw = new OutputStreamWriter(fOut); 
                                     osw.write(Environment.getExternalStorageDirectory().getAbsolutePath() + "/recordings/" + br);
                                     osw.flush();
                                     osw.close();
                                     } catch (IOException e1) {
                                          e1.printStackTrace();
                                     }
-                                
-                                    Intent mainIntent = new Intent(getBaseContext(), DescribeActivity.class);
+                                	 
+                                    Intent mainIntent = new Intent(getBaseContext(), DescribeActivity.class); 
                                     startActivity(mainIntent);
                                     finish();
-                          return;
+                         		  return;
                                 case 1:
                                     Intent it;
                                     Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getAbsolutePath() + "/recordings/" + br);
                                     it = new Intent(Intent.ACTION_VIEW, uri);
-                                    it.setDataAndType(uri,"video/3gpp");
+                                    it.setDataAndType(uri,"video/3gpp"); 
                                     startActivity(it);
                                     return;
                                 }
@@ -257,9 +180,7 @@ public class MainActivityGroup extends ActivityGroup {
                         alert.show();
                         dialoog.cancel();
                         
-                    }
-
-                });
+                    }});
                 
                 dialoog.setContentView(cView);
                 dialoog.show();
@@ -299,23 +220,6 @@ public class MainActivityGroup extends ActivityGroup {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.group);
         
-        Intent i = new Intent(this, RecorderActivity.class);
-        // Ensure that only one ListenActivity can be launched. Otherwise, we may
-        // get overlapping media players.
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        Window w =
-          getLocalActivityManager().startActivity(RecorderActivity.class.getName(),
-              i);
-        View v = w.getDecorView();
-        ((ViewGroup) findViewById(R.id.Recorder)).addView(v,
-            new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
-                LayoutParams.FILL_PARENT));
-
-        // A little hacky, but otherwise we get an annoying black line where the
-        // seam of the drawer's edge is.
-        ((FrameLayout)((ViewGroup) v).getChildAt(0)).setForeground(null);
-        
-    
         Intent j = new Intent(this, MainActivity.class);
         // Ensure that only one ListenActivity can be launched. Otherwise, we may
         // get overlapping media players.
@@ -327,14 +231,9 @@ public class MainActivityGroup extends ActivityGroup {
             new ViewGroup.LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.FILL_PARENT));
         
-        raActivity = (RecorderActivity) getLocalActivityManager().getActivity(RecorderActivity.class.getName());
         maActivity = (MainActivity) getLocalActivityManager().getActivity(MainActivity.class.getName());
         
-        maActivity.setRecorderActivity(raActivity);
-        raActivity.setMainActivity(maActivity);
-        raActivity.setParentGroup(this);
         maActivity.setParentGroup(this);
-        raActivity.setFL(maActivity.getFL());
         
         AudioManager mgr = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
         vol = mgr.getStreamVolume(AudioManager.STREAM_SYSTEM);
@@ -346,7 +245,7 @@ public class MainActivityGroup extends ActivityGroup {
         String first = prefs.getString("first_time", "fuck");
         if(first.contains("fuck")){
             new AlertDialog.Builder(this)
-            .setMessage("Welcome to OpenWatch! \n\n This application allows opportunistic citizen journalists to invisibly record public and private officials and post the recordings to a central website, openwatch.net. A guide to using the application is availble in the Tutorial in the menu. More information about the OpenWatch can be found in the About section.")
+            .setMessage("Welcome to Cop Recorder 2! \n\n This application allows opportunistic citizen journalists to invisibly record public and private officials and post the recordings to a central website, OpenWatch.net.\n\n A guide to using the application is availble in the Tutorial in the menu. \n\n If you want a version that can record video, please search on the market for OpenWatch. \n\nMore information about the OpenWatch Project can be found in the About section.\n\n Record bravely!")
             .setPositiveButton("Okay!", null)
             .show();
             editor2 = prefs.edit();
@@ -360,6 +259,7 @@ public class MainActivityGroup extends ActivityGroup {
         Intent intent = new Intent(rService.ACTION_FOREGROUND);
         intent.setClass(MainActivityGroup.this, rService.class);
         startService(intent);
+
         bindRecordService();
        
     }
@@ -367,10 +267,6 @@ public class MainActivityGroup extends ActivityGroup {
     
     public void onResume() {
         super.onResume();
-        if(stoppedPrematurely) {
-            stoppedPrematurely = false;
-            buildDoneDialog();
-        }
     }
     
     @Override
@@ -378,12 +274,6 @@ public class MainActivityGroup extends ActivityGroup {
         super.onPause();
         AudioManager mgr = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
         mgr.setStreamVolume(AudioManager.STREAM_SYSTEM, vol, 0);
-        
-        if(raActivity != null && raActivity.isVideoRecording()) {
-            raActivity.stop();
-            maActivity.activateButton();
-            stoppedPrematurely = true;
-        }
     }
     
     public void stopMain() {

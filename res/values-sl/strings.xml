@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OpenWatch Recorder</string>
+    <string name="record_video">Snemaj Zvok</string>
+    <string name="record_audio">Snemaj Sliko</string>
+    <string name="recording_saved">Posnetek shranjen</string>
+    <string name="upload_recording_now">Bi želeli zdaj naložiti vaš posnetek?</string>
+    <string name="yes_upload">Da, naloži zdaj!</string>
+    <string name="no_quit">Ne, samo koncaj</string>
+    <string name="uploading_file">Nalagam datoteko!</string>
+    <string name="title">Naslov</string>
+    <string name="title_ex">Ime dogodka</string>
+    <string name="pub">Javni opis</string>
+    <string name="pub_ex">brez, posnetek zasebnega stražarja ki napade moškega na letališcu, sodnik ki prejema podkupnino</string>
+    <string name="priv">Zasebni opis</string>
+    <string name="priv_ex">Opombe, ki jih želite sporociti OW administratorjem. Odstrani imena, spremeni glasove, itd.</string>
+    <string name="upload">Naloži!</string>
+    <string name="please_describe">Prosim, opišite vaš posnetek!\n</string>
+    <string name="location_on">Lokacija: On</string>
+    <string name="location_off">Lokacija: Off</string>
+    <string name="settings">Nastavitve</string>
+    <string name="uploading">Nalaganje..</string>
+    <string name="uploading_sub">To lahko traja nekaj casa.</string>
+    <string name="upload_done">Nalaganje koncano!</string>
+    <string name="open">Izberite datoteko za nalaganje</string>
+    <string name="tutorial">Navodila</string>
+    <string name="about_text">OpenWatch je participatoren državljanski medijski projekt, katerega namen je ponuditi dokumentirane dokaze uporabe in zlorabe moci.\n\n
+
+				Dosedaj je bila nadzorna tehnologija le v rokah tistih, ki že imajo moc, kar pomeni da je ni bilo mogoce uporabiti za boj proti najvecji težavi moderne družbe: zlotabi moci.\n\n
+				Postavi se vprašanje: Kdo nadzoruje nadzornike? \n\n
+				Tukaj nastopi OpenWatch. Zdaj smo vsi oportunisticni novinarji. Kadar kdo izmed nas pride v stik z uporabo oz. zlorabo moci, lahko to zabeleži in posnetek predstavi javnosti. Ce išcemo resnico in pravicnost, se bomo lahko sklicevali na dokumentirane dokaze, ne le na našo besedo proti njihovi. V idealnih razmerah, bo to pomenilo manj korupcije, bolj odprto državo in bolj transparentno družbo.\n\n
+				OpenWatch ni namenjen le prikazu zlorabe moci, ampak tudi izpostavljanju njene pravilne uporabe. Ker nimamo tehnoloških omejitev, lahko snemamo vsak trenutek uporabe moci, da bi lahko analizirali svetovne trende in priskrbeli posnetke bodocim zgodovinarjem.\n\n
+				Policija, vodje korporacij, sodniki, odvetniki, zasebni stražarji, lobisti, bankirji, vodje in politiki: zavedajte se! Opazujemo vas! \n\n\nOpenWatch je zastonjski in odprtokodni program. Vec informacij na OpenWatch.net</string>
+    <string name="tutorial_text">Dobrodošel, novi nadzornik!\n\n Kadarkoli nameravate stopiti v stik z oblastmi ali osebo v položaju moci, zaženite OpenWatdh in izberite Snemaj Zvok ali Snemaj Sliko. \n\nCe snemate zvok, bo videti, kot da se je aplikacija zaprla, ceprav se zvok še naprej snema. Ko koncate s srecanjem, ponovno odprite aplikacijo in le-ta bo prenehala s snemanjem, ter vas vprašala za opis vsebine za nalaganje. Za najboljšo kakovost zvoka, spravite telefon v vprednji žep vaše srajce ali na najbližjo mizo, pri cemer naj bo mikrofon obrnjen navzgor.\n\n
+    							 Ce snemate sliko, bo ekran postal crn, kot bi se telefon ugasnil. Za ustavitev snemanja, trikrat pritisnite gumb nazaj. Snemanje bo prekinjeno in vprašani boste za nalaganje. Da ne bi bili videti sumljivi med snemanjem, se pretvarjajte, da telefonirate.\n\n
+    							 Pri nalaganju prosim opišite incident. Uredniki si bodo posnetek ogledali in ga kmalu objavili na OpenWatch.net. Ce boste zahtevali, bomo poskusili odstraniti vse vaše osebne podatke, ki bi utegnili razkriti vašo identiteto, kolikor bo v naši moci. Strežnik ne hrani zapisov o prenosih.\n\nVsi posnetki so spušceni pod Creative-Commons-Attribution licenco.\n\nPogum je nalezljiv!</string>
+    
+</resources>

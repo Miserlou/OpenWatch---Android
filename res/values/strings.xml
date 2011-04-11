@@ -25,25 +25,21 @@
     <string name="upload_done">Upload finished!</string>
     <string name="open">Select File to Upload</string>
     <string name="tutorial">Tutorial</string>
-    <string name="about_text">OpenWatch is a participatory citizen media project aiming to provide documentary evidence of uses and abuses of power.\n\n
+    <string name="upload_or_play">Upload or Play?</string>
+    <string name="play">Play</string>
+    <string name="about_text">OpenWatch is a participatory citizen media project aiming to provide documentary evidence of uses and abuses of power.\n\
 
 				Until now, surveillance technology has only been in the hands of those who are already in power, which means it cannot be used to combat the largest problem facing modern society: abuse of power.\n\n
 				So the question remains: Who watches the watchers? \n\n
 				This is where OpenWatch comes in. Now, we are all opportunistic journalists. Whenever any of us come in contact with power being used or abused, we can capture it and make it become part of the public record. If we seek truth and justice, we will be able to appeal to documentary evidence, not just our word against theirs. Ideally, this will mean less corruption, more open government and a more transparent society.\n\n
 				OpenWatch is not only intended to display abuse of power, but also to highlight appropriate use. As we are unbound by technological restrictions, we can aim to record every single time power is applied so that we may analyze global trends and provide a record for future historians.\n\n
 				Police, corporate executives, judges, lawyers, private security agents, lobbyists, bankers, principals and politicians: be mindful! We are watching! \n\n\nOpenWatch is Free and Open Source Software. More information is available at OpenWatch.net</string>
+    
     <string name="tutorial_text">Welcome, new Watcher!\n\n Whenever you think you are about to interact with an authority figure or a person in a position of power, start OpenWatch and either press Record Audio or Record Video. \n\nIf you record audio, the application will appear to close, although audio is still being recorded. When the encounter is over, reopen the application and it will stop the recording and prompt you for a description for the upload. For best audio quality, put the phone in your front shirt pocket, or on a nearby table with the microphone facing upwards.\n\n
     							 If you are recording video, the screen will simply turn black, as if the phone were off. To stop the recording, press the back button three times, which will then stop the recording and prompt you to upload. To avoid suspicion while filming, simply pretend to be making a phone call.\n\n
     							 When uploading, please describe the incident. It will be reviewed by the editors and quickly published to OpenWatch.net. If you request, we will remove all of the personally identifiable information we can. No logs are kept on the server.\n\nAll uploads are released under the Creative-Commons-Attribution license.\n\nCourage is contagious!</string>
     
     
-    <!-- OI File Uploader Crap -->
-    
-    <string name="about_translators">translator-credits</string>
-	
-    <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
-	<string name="about_website_label">OI File Manager at OpenIntents</string> 
-	
 	<string name="menu_new_folder">New Folder</string>
     <string name="menu_delete">Delete</string>
     <string name="menu_rename">Rename</string>
@@ -52,68 +48,7 @@
     <string name="menu_move">Move</string>
     <string name="menu_copy">Copy</string>
     
-    <string name="create_new_folder">Create new folder</string>
-    <string name="folder_name">Folder name</string>
-    <string name="file_name">Folder name</string>
-    <string name="this_folder_is_empty">This folder is empty.</string>
-    <string name="really_delete">Do you really want to delete %s?</string>
-    <string name="file_deleted">File deleted.</string>
-    <string name="folder_deleted">Folder deleted.</string>
-    <string name="file_renamed">File renamed.</string>
-    <string name="folder_renamed">Folder renamed.</string>
-    <string name="file_moved">File moved.</string>
-    <string name="folder_moved">Folder moved.</string>
-    <string name="file_copied">File copied.</string>
-    <string name="move_title">Select folder to move to</string>
-    <string name="move_button">Move here</string>
-    <string name="copy_title">Select folder to copy to</string>
-    <string name="copy_button">Copy here</string>
-    
-    <string name="copied_file_name">Copy of %s</string>
-    
-    <string name="error_creating_new_folder">Could not create new folder.</string>
-    <string name="error_deleting_file">Could not delete file.</string>
-    <string name="error_folder_not_empty">Folder is not empty.</string>
-    <string name="error_renaming_file">Could not rename file.</string>
-    <string name="error_renaming_folder">Could not rename folder.</string>
-    <string name="error_moving_file">Could not move file.</string>
-    <string name="error_moving_folder">Could not move folder.</string>
-    <string name="error_copying_file">Could not copy file.</string>
-    <string name="error_file_does_not_exists">File does not exist.</string>
-    
-    <string name="send_not_available">No application available for sending.</string>
-    
-    <string name="application_not_available">Application not available</string>
-    
     <string name="faq">FAQ</string>
-    
-    <string name="faq_msg">How do I download things?\n\n Go to a torrent site like BTJunkie.org, look for your title, then long press on the torrent link, save it, then open it. Make sure the torrent has lots of seeders to download from.\n\nWhere are my downloads saved to?\n\nFiles are downloaded to the the downloads folder on your SDCard, and you can access those files by downloading the OI File Manager.\n\nHow can I make my downloads go faster?\n\nIf you have a powerful phone like a Droid or a Nexus One, you could try increasing the number of available peers.\n\nSometimes my downloads drop to 0kbps - what\'s going on?\n\nAlthough this should happen less now, sometimes this behavior occurs because of the nature of the cellular data network. If you find this happens, you can give it a nudge by pressing pause, then play.\n\nWill you add multiple downloads?\n\nYES! When T-Mobile releases the 2.0 update for the G1, I will activate multiple downloads for this client.\n\nI have found a bug, or I want to request a new feature, what should I do?\n\nYou can send me an email at rich@anomos.info to file bug reports or request features. I also really enjoy 5-star ratings and find myself more inspired to code when people are being nice the comments. :)\n\nHappy downloading!</string>
-    
-	<string name="search">Search for what?</string>
-	<string name="search2">Please enter your search term!</string>
-
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Manager EULA</string>
-	<string name="eula_accept">Accept</string>
-	<string name="eula_refuse">Cancel</string>
-	
-	<!-- Update -->
-	<string name="update_box_text">Please check manually for updates or install OI Update
-for automatic notifications.
-Current version: %s
-	</string>
-	<string name="update_check_now">Check now.</string>
-	<string name="update_get_updater">Get OI Updater.</string>
-	<string name="update_error">Download application not available.</string>
-	<string name="update">Check updates</string>
-	
-    <!-- About -->
     <string name="about">About</string>
-	<string name="aboutapp_not_available">Version %s\n\nNo compatible extension available to display full info (contact, credits, license).</string>
-    <string name="aboutapp_get">Get OI About</string>
     
 </resources>
