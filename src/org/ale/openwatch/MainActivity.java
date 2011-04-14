@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import org.ale.openwatch.R;
 
@@ -40,6 +41,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -249,6 +251,43 @@ public class MainActivity extends Activity {
                        }
            
        });
+       
+       ImageView tag = (ImageView)findViewById(R.id.tag);
+       int rand = new Random().nextInt(10);
+       switch(rand){
+       case 0:
+           tag.setImageResource(R.drawable.tag1);
+           return;
+       case 1:
+           tag.setImageResource(R.drawable.tag2);
+           return;
+       case 2:
+           tag.setImageResource(R.drawable.tag3);
+           return;
+       case 3:
+           tag.setImageResource(R.drawable.tag4);
+           return;
+       case 4:
+           tag.setImageResource(R.drawable.tag5);
+           return;
+       case 5:
+           tag.setImageResource(R.drawable.tag6);
+           return;
+       case 6:
+           tag.setImageResource(R.drawable.tag7);
+           return;
+       case 7:
+           tag.setImageResource(R.drawable.tag8);
+           return;
+       case 8:
+           tag.setImageResource(R.drawable.tag9);
+           return;
+       case 9:
+           tag.setImageResource(R.drawable.tag10);
+           return;
+           
+       
+       }
        
    }
    

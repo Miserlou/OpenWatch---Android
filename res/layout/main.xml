@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/tile"
+    android:background="@drawable/gradient_background"
     >
      <ImageView
    		android:id="@+id/stripey"
@@ -19,8 +19,20 @@
 	    android:layout_gravity="center_horizontal"
 	    android:paddingLeft="10dip"
 	    android:paddingRight="10dip"
-	    android:paddingTop="30dip"
-	    android:paddingBottom="120dip" >
+	    android:paddingTop="20dip"
+	    android:paddingBottom="0dip" >
+    </ImageView>
+        <ImageView
+        android:id="@+id/tag"
+    	android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content"
+	    android:src="@drawable/tag1"
+	    android:scaleType="fitCenter"
+	    android:layout_gravity="center_horizontal"
+	    android:paddingLeft="10dip"
+	    android:paddingRight="10dip"
+	    android:paddingTop="-30dip"
+	    android:paddingBottom="60dip" >
     </ImageView>
 
     		    <Button
