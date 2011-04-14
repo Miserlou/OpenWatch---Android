@@ -5,6 +5,11 @@
     android:layout_height="fill_parent"
     android:background="#ffffff"
     >
+     <ImageView
+   		android:id="@+id/stripey"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:src="@drawable/stripey" />
 
 <ScrollView
     android:orientation="vertical"
