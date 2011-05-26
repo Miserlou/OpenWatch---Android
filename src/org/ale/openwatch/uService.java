@@ -5,14 +5,11 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -27,6 +24,31 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 
+/*
+ * OpenWatch Uploader Service
+ * 
+ * There's somewhat of a security stalemate going on here that I'm not thrilled about.
+ * OpenWatch.net has HTTPS available, but only using a self-signed certs - given the target
+ * of this application, relying on a paid-for cert seems like a bad call. However, Android
+ * doesn't like self-signed certs if you don't add the CA, which we can't do for non-root phones.
+ * 
+ * On top of that, we want this software to be available for distribution and use in countries where
+ * SSL can simply be shut off (eg Iran).
+ * 
+ * I've also got a development branch which adds support for OrLib for Tor support, however 
+ * because we can't do the HTTPS, sending data unencrypted over Tor would be our only choice, which 
+ * would be a horrible choice.
+ * 
+ * Ideally, the order of upload attempts should be:
+ *      HTTPS over Tor
+ *      HTTPS
+ *      HTTP
+ *
+ * For now, it's just HTTP, unfortunately. Solutions are probably hacking together a way of using
+ * our SSC, or somebody coming along and convincing me that pay-for certs are a good idea.
+ * 
+ */
+
 public class uService extends Service{
     
     HttpURLConnection connection = null;
@@ -38,6 +60,7 @@ public class uService extends Service{
     String privDesc = "";
     String title = "";
     String location = "XXX Unavailable XXX";
+    String secUrlServer = "https://openwatch.net/uploadnocaptcha/";
     String urlServer = "http://openwatch.net/uploadnocaptcha/";
     String lineEnd = "\r\n";
     String twoHyphens = "--";
@@ -55,7 +78,6 @@ public class uService extends Service{
 	Intent notificationIntent;
 	RemoteViews contentView;
 	PendingIntent contentIntent;
-//    SharedPreferences.Editor editor = prefs.edit();
     
     private final uploadService.Stub m_binder = new uploadService.Stub(){
 
@@ -85,13 +107,8 @@ public class uService extends Service{
     public void upload() {
         setDataFromPrefs();
         setDataFromPath();
-        System.out.println("File path is..");
-        System.out.println(pathToOurFile);
-        
-//        try
-//        {
-            
-            try {
+
+        try {
                 InputStream serverInput = ClientHttpRequest.post(
                         new java.net.URL(urlServer), 
                         new Object[] {
@@ -102,14 +119,19 @@ public class uService extends Service{
                                       "rec_file", new File(pathToOurFile)
                                      });
             } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
+          
+//        XXX: This is the old way of doing this, simplified by ClientHttpRequest
+//              but kept here for now, just for reference.
             
+//        try
+//        {
 //            FileInputStream fileInputStream = new FileInputStream(new File(pathToOurFile) );
 //        
 //            URL url = new URL(urlServer);
@@ -207,7 +229,6 @@ public class uService extends Service{
     }
     
     public void setDataFromPath() {
-        FileInputStream fIn;
             File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/rpath.txt");
             StringBuilder contents = new StringBuilder();
             
