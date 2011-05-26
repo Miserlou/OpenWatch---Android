@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/gradient_background">
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/gradient_background"
     >
      <ImageView
    		android:id="@+id/stripey"
@@ -69,7 +75,7 @@
     			android:textColor="#000000"
     			android:background="@drawable/button"
     			android:shadowColor="#ffffff"
-    			android:shadowDy="-1"
+    			android:shadowDy="1"
     			android:shadowRadius="1"
     			android:singleLine="true"
     			android:ellipsize="none"
@@ -77,5 +83,23 @@
 			    android:paddingRight="10dip"
 			    android:paddingTop="10dip"
 			    android:paddingBottom="10dip" />
+			    
+
     
 </LinearLayout>
+	<TextView  
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content" 
+			    android:text="www.openwatch.net"
+			    android:id="@+id/url"
+			    android:textColor="#A3A3A3"
+			    android:shadowColor="#fff"
+				android:shadowRadius="1"
+				android:shadowDy="1"
+		    	android:textAppearance="?android:attr/textAppearanceSmall"
+			    android:gravity="center"
+			    android:paddingBottom="5dip"
+			    android:layout_alignParentBottom="true"
+			     />
+
+</RelativeLayout>

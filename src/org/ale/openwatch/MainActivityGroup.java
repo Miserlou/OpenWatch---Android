@@ -206,6 +206,10 @@ public class MainActivityGroup extends ActivityGroup {
                 list.setStackFromBottom(true);
                 
                 ArrayList<String> listItems = getRecordingList();
+                
+                if (listItems == null){
+                    return false;
+                }
                
                 ListItemsAdapter adapter = new ListItemsAdapter(listItems);
                 list.setAdapter(adapter);
@@ -406,6 +410,10 @@ public class MainActivityGroup extends ActivityGroup {
         File folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/recordings");
         File[] listOfFiles = folder.listFiles();
         ArrayList<String> al = new ArrayList<String>();
+        
+        if(listOfFiles == null) {
+            return null;
+        }
 
         for (int i = 0; i < listOfFiles.length; i++) {
           if (listOfFiles[i].isFile()) {
