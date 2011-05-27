@@ -115,7 +115,6 @@ public class DescribeActivity extends Activity{
 					    try {
                             u_service.start();
                         } catch (RemoteException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 					    
@@ -151,7 +150,6 @@ public class DescribeActivity extends Activity{
               @Override
               public void gotLocation(final Location location){
                   //Got the location!
-                  System.out.println("Got location!");
                   
                   loc = location;
                   if (location != null) {

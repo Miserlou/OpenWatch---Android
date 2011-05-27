@@ -51,8 +51,6 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
           osw.write(path);
           osw.flush();
           osw.close();
-          System.out.println("Video path is..");
-          System.out.println(path);
       }catch(IOException e) {
           e.printStackTrace();
       }
@@ -116,7 +114,6 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
         recorder.release();
     }
     catch(Exception e) {
-        System.out.println("A bad.");
     }
   }
   

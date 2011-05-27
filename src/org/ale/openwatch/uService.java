@@ -101,9 +101,7 @@ public class uService extends Service{
         
     };
 
-    //This method was shamelessly stolen from here:
-    // http://reecon.wordpress.com/2010/04/25/uploading-files-to-http-server-using-post-android-sdk/
-    // Thanks, reecon!
+
     public void upload() {
         setDataFromPrefs();
         setDataFromPath();
@@ -129,6 +127,10 @@ public class uService extends Service{
           
 //        XXX: This is the old way of doing this, simplified by ClientHttpRequest
 //              but kept here for now, just for reference.
+            
+            //This method was shamelessly stolen from here:
+            // http://reecon.wordpress.com/2010/04/25/uploading-files-to-http-server-using-post-android-sdk/
+            // Thanks, reecon!
             
 //        try
 //        {

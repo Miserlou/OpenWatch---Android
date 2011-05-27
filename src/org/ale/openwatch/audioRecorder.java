@@ -8,9 +8,6 @@ import java.io.OutputStreamWriter;
 import android.media.MediaRecorder;
 import android.os.Environment;
 
-/**
- * @author <a href="http://www.benmccann.com">Ben McCann</a>
- */
 public class audioRecorder {
 
   final MediaRecorder recorder = new MediaRecorder();
@@ -56,7 +53,6 @@ public class audioRecorder {
       throw new IOException("Path to file could not be created.");
     }
     
-    
     setPath(path);
     recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
     recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -76,8 +72,6 @@ public class audioRecorder {
           osw.write(s);
           osw.flush();
           osw.close();
-          System.out.println("Path to file is is..");
-          System.out.println(s);
       }catch(IOException e) {
           e.printStackTrace();
       }

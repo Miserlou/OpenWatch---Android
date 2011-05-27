@@ -61,8 +61,6 @@ public class MainActivity extends Activity {
     
     Context c;
     
-
-    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -196,7 +194,6 @@ public class MainActivity extends Activity {
                                            public void run() {
                                                Intent mainIntent = new Intent(c, DescribeActivity.class); 
                                                startActivity(mainIntent);
-//                                                   u_service.start();
                                            }});
 
                                        finish();
@@ -209,7 +206,6 @@ public class MainActivity extends Activity {
                                alert2.show();
                            }
                        } catch (RemoteException e) {
-                           // TODO Auto-generated catch block
                            e.printStackTrace();
                        }
                    }
@@ -234,7 +230,6 @@ public class MainActivity extends Activity {
                            try {
                             mag.r_service.start();
                         } catch (RemoteException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                        }
@@ -285,10 +280,8 @@ public class MainActivity extends Activity {
        case 9:
            tag.setImageResource(R.drawable.tag10);
            return;
-           
        
        }
-       
    }
    
 
@@ -298,7 +291,6 @@ public class MainActivity extends Activity {
 
     public void setParentGroup(MainActivityGroup magg) {
         mag = magg;
-        System.out.println("Parent group set!");
     }
     
     public FrameLayout getFL() {
