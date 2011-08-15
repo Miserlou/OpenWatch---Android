@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory
+                android:title="Server Settings">
+        <EditTextPreference
+                android:summary="Set a custom upload server.  The default is openwatch.net"
+                android:defaultValue="openwatch.net"
+                android:title="Enter server URL"
+                android:key="uploadURL" android:name="Upload Server"/>
+        </PreferenceCategory>
+</PreferenceScreen>
+                

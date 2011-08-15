@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +22,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 /*
  * OpenWatch Uploader Service
@@ -60,8 +60,7 @@ public class uService extends Service{
     String privDesc = "";
     String title = "";
     String location = "XXX Unavailable XXX";
-    String secUrlServer = "https://openwatch.net/uploadnocaptcha/";
-    String urlServer = "http://openwatch.net/uploadnocaptcha/";
+    String defaultUploadUrl = "openwatch.net";
     String lineEnd = "\r\n";
     String twoHyphens = "--";
     String boundary =  "*****";
@@ -100,6 +99,20 @@ public class uService extends Service{
         }
         
     };
+    public String secUrlServer(){
+    	String url = "https://" + getUploadURL() + "/uploadnocaptcha/";
+    	return url;
+    }
+    public String urlServer(){ 
+    	String url = "http://" + getUploadURL() + "/uploadnocaptcha/";
+    	return url;
+    }
+    public String getUploadURL(){
+		Toast.makeText(getApplicationContext(), "toast!", Toast.LENGTH_SHORT);
+		SharedPreferences owSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());  
+		String upload_url = owSettings.getString("uploadURL", "openwatch.net" );
+		return upload_url;
+    }
 
 
     public void upload() {
@@ -108,7 +121,7 @@ public class uService extends Service{
 
         try {
                 InputStream serverInput = ClientHttpRequest.post(
-                        new java.net.URL(urlServer), 
+                        new java.net.URL(urlServer()), 
                         new Object[] {
                                       "name", title,
                                       "public_description", pubDesc,
