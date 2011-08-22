@@ -1,4 +1,4 @@
-package org.ale.openwatch;
+	package org.ale.openwatch;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,6 +34,7 @@ import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -382,6 +383,25 @@ public class MainActivityGroup extends ActivityGroup {
 		intent.setClass(MainActivityGroup.this, rService.class);
 		startService(intent);
 		bindRecordService();
+		
+		// if activityGroup was started by widget, start the recorder immediately 
+        Bundle extras = getIntent().getExtras();
+		if(extras != null){
+			if(extras.getBoolean(ClientAppWidgetProvider.KEY_AUTOREC)){
+				if(!raActivity.hidden && !maActivity.recording){
+			        final Button ib = (Button) maActivity.findViewById(R.id.ib);
+	                mHandler.postDelayed(new Runnable() {
+	
+	                    public void run() {
+	                        maActivity.recording = true;
+	                        ib.setClickable(false);
+	                        raActivity.start();
+	                    }}, 400);
+
+	                ib.setBackgroundResource(R.drawable.buttonpressed);
+				}
+			}
+		}
 
 	}
 

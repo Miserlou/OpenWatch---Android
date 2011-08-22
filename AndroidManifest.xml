@@ -34,6 +34,14 @@
         <service android:name=".uService"/>
         <activity android:name=".Preferences" android:label="@string/set_preferences"></activity>
 
+        <receiver android:name=".ClientAppWidgetProvider">
+            <meta-data android:name="android.appwidget.provider"
+                    android:resource="@xml/widget" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+
     </application>
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.RECORD_VIDEO" />
