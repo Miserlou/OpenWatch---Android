@@ -102,8 +102,7 @@ public final class R {
         public static final int text1=0x7f090005;
         public static final int thebutton=0x7f090028;
         public static final int title=0x7f090024;
-        public static final int toptext=0x7f09002d;
-        public static final int twitterText=0x7f09002c;
+        public static final int toptext=0x7f09002c;
         public static final int url=0x7f09001d;
         public static final int widgetIcon=0x7f09002b;
     }
@@ -134,8 +133,8 @@ public final class R {
         public static final int about=0x7f060025;
         public static final int about_comments=0x7f060034;
         /**  ***************************
-             About information
-             *************************** 
+	     About information
+	     *************************** 
          */
         public static final int about_copyright=0x7f06005c;
         public static final int about_email=0x7f06005e;
@@ -152,8 +151,8 @@ public final class R {
         public static final int app_name=0x7f060001;
         public static final int application_not_available=0x7f060051;
         /**  ***************************
-             Preferences
-             *************************** 
+	     Preferences
+	     *************************** 
          */
         public static final int configure=0x7f060062;
         public static final int copied_file_name=0x7f060046;
@@ -175,24 +174,24 @@ public final class R {
         public static final int eula_accept=0x7f060053;
         public static final int eula_refuse=0x7f060054;
         /**  ***************************
-             Distribution
-             *************************** 
+	     Distribution
+	     *************************** 
  EULA 
  ***************************
-             Distribution
-             *************************** 
+	     Distribution
+	     *************************** 
  EULA 
  ***************************
-             Distribution
-             *************************** 
+	     Distribution
+	     *************************** 
  EULA 
  ***************************
-             Distribution
-             *************************** 
+	     Distribution
+	     *************************** 
  EULA 
  ***************************
-             Distribution
-             *************************** 
+	     Distribution
+	     *************************** 
  EULA 
          */
         public static final int eula_title=0x7f060052;
@@ -248,8 +247,8 @@ public final class R {
         public static final int up=0x7f06002c;
         public static final int update=0x7f060059;
         /**  ***************************
-             Distribution
-             *************************** 
+	     Distribution
+	     *************************** 
  Update 
          */
         public static final int update_app_url=0x7f06005f;
@@ -284,4 +283,3 @@ public final class R {
         public static final int widget=0x7f040003;
     }
 }
-
