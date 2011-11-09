@@ -5,6 +5,7 @@
   - how do we want to handle incoming calls, messages
 *add ability to delete files
   -this also requires password protection to change any settings
+* comment code so that shit makes sense (this is on Ringo)
 * Enable "overt" recording mode
 * warning re: check recording laws in your area
 * more options for configuring your own server (port, url, etc)--
