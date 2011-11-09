@@ -67,7 +67,9 @@ public class RecorderActivity extends Activity {
         super.onResume();
     }
        
-    
+    /** Called when the video recorder is started
+     * 
+     */
     public void start() {
             vr.setVisibility(View.VISIBLE);
             iv.setVisibility(View.VISIBLE);
@@ -87,7 +89,9 @@ public class RecorderActivity extends Activity {
                 }});
             
     }
-    
+    /** Called when video recording stops. Makes recorder invisible.
+     * 
+     */
     public void stop() {
             
             

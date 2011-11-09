@@ -39,10 +39,11 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-
+/** TODO: When is this called? 
+ */
 public class MainActivityGroup extends ActivityGroup {
 	/** Called when the activity is first created. */
-
+	
 	public boolean recording = false;
 	final Handler mHandler = new Handler();
 	private boolean r_servicedBind = false;
