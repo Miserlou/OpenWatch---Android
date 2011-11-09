@@ -1,6 +1,19 @@
-* Auto-upload
+* Streaming (cooperq)
+* Add HTTPS Support
+* Add Tor Support (do some benchmarking)
 * Properly handle incoming calls
-* Translation??
+  - how do we want to handle incoming calls, messages
+*add ability to delete files
+  -this also requires password protection to change any settings
+* Enable "overt" recording mode
+* warning re: check recording laws in your area
+* more options for configuring your own server (port, url, etc)--
 
-v2.0:
-    Streaming?
+low priority/pie-in-sky
+* Translation
+* gps-based events
+* add ability to delete based on timer
+* abillity to upload to youtube?
+* ability to add metadata gps time etc
+* ability to scrub metadata
+* call for backup feature
