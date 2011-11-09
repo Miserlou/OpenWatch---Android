@@ -25,7 +25,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
     /** Called when the activity is first created. */
-    
+	/** This is called when the program first starts and is where variables
+	 * are first initialized */
     public boolean recording = false;
     final Handler mHandler = new Handler();
     private boolean m_servicedBind = false;
@@ -37,6 +38,8 @@ public class MainActivity extends Activity {
     Context c;
     
     @Override
+    /* This is called when the activity is created (when the app is started).
+    It initialized the layout */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -46,14 +49,14 @@ public class MainActivity extends Activity {
         c = this;
         
     }
-    
+    // TODO: Figure out what this does
     public void activateButton() {
         final Button ib = (Button) findViewById(R.id.ib);
         ib.setClickable(true);
         ib.setBackgroundResource(R.drawable.button);
         recording = false;
     }
-    
+    // Called whenever the activity regains focus
     public void onResume() {
         super.onResume();
         final Button ib = (Button) findViewById(R.id.ib);
@@ -61,11 +64,15 @@ public class MainActivity extends Activity {
         final Context c = this;
 
         final MainActivity ma = this;
-        
+        // Loads preferences
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         final SharedPreferences.Editor editor;
         editor = prefs.edit();
-        
+        /** Checks to see if the user clicked record
+         *  and if they did, starts main activity in
+         *  RecorderActivity.java
+         */ 
+   
         final OnTouchListener realOTL = new OnTouchListener() {
 
             public boolean onTouch(View v, MotionEvent event) {
@@ -98,7 +105,7 @@ public class MainActivity extends Activity {
                         }
             }
         };
-        
+        //Warns user about how video recording works, calls realOTL 
         final OnTouchListener fakeOTL = new OnTouchListener() {
 
             public boolean onTouch(View v, MotionEvent event) {
@@ -139,7 +146,10 @@ public class MainActivity extends Activity {
        
        final Button b = (Button) findViewById(R.id.aib);
        boolean running = prefs.getBoolean("running", false);
-       
+       /** If the recorder is running, kill the recorder. This runs every time we
+        * give the main activity focus again (such as if after recording we start
+        * openwatch again)
+        */
        if(running){
            
            final Runnable stopper = new Runnable() {
@@ -190,7 +200,7 @@ public class MainActivity extends Activity {
            mHandler.postDelayed(stopper,100);
            
        }
-       
+       // TODO: This starts Recording Service/Activity? , but not sure how or why
        b.setOnTouchListener(new OnTouchListener() {
 
            public boolean onTouch(View v, MotionEvent event) {
@@ -221,7 +231,11 @@ public class MainActivity extends Activity {
                        }
            
        });
-       
+       /** Picks a random number and displays a random quote defined from res/drawable-hdpi
+        * For some reason these tags are .png files. Unless there is any particular reason
+        * for this, they should just be changed to text strings! TODO: Look into this
+        */
+      
        ImageView tag = (ImageView)findViewById(R.id.tag);
        int rand = new Random().nextInt(10);
        switch(rand){
@@ -259,15 +273,15 @@ public class MainActivity extends Activity {
        }
    }
    
-
+// TODO: What is this?
     public void setRecorderActivity(RecorderActivity raa) {
         ra = raa;
     }
-
+// TODO: What is this?
     public void setParentGroup(MainActivityGroup magg) {
         mag = magg;
     }
-    
+// TODO: What is this?
     public FrameLayout getFL() {
         return (FrameLayout)findViewById(R.id.Recorder);
     }
