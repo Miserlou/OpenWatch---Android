@@ -370,8 +370,12 @@ public class MainActivityGroup extends ActivityGroup {
 		if (first.contains("fuck")) {
 			new AlertDialog.Builder(this)
 					.setMessage(
-							"Welcome to OpenWatch! \n\n This application allows opportunistic citizen journalists to invisibly record public and private officials and post the recordings to a central website, openwatch.net. A guide to using the application is availble in the Tutorial in the menu. More information about the OpenWatch can be found in the About section. \n\n Please note that some jurisdictions may require consent to record in certain situations. Be sure to check your local laws. ")
+							"Welcome to OpenWatch! \n\n This application allows opportunistic citizen journalists to invisibly record public and private officials and post the recordings to a central website, openwatch.net. A guide to using the application is availble in the Tutorial in the menu. ")
 					.setPositiveButton("Okay!", null).show();
+			new AlertDialog.Builder(this)
+			.setMessage(
+					"Some jurisdictions may require consent to record in certain situations. While overtly recording public officials in public areas is usually allowed, different rules often come into play with covert recording or recording in areas where somebody has a 'reasonable expectation of privacy'. Be sure to check your local laws.")
+			.setPositiveButton("Okay!", null).show(); 
 			editor2 = prefs.edit();
 			editor2.putString("first_time", "shitballs");
 			editor2.commit();
