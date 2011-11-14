@@ -7,6 +7,21 @@
                 android:defaultValue="openwatch.net"
                 android:title="Enter server URL"
                 android:key="uploadURL" android:name="Upload Server"/>
+        <EditTextPreference
+                android:summary="Set a custom upload path. The default is /uploadnocaptcha/"
+                android:defaultValue="/uploadnocaptcha/"
+                android:title="Enter Upload Path"
+                android:key="uploadPath" android:name="Upload Path"/>
+        <EditTextPreference
+                android:summary="The port for your upload server. 80 is the default."
+                android:defaultValue="80"
+                android:title="Enter port"
+                android:key="uploadPort" android:name="Upload Port"/>
+        <CheckBoxPreference
+                	android:title="SSL Enabled?"
+        		android:defaultValue="false"
+		        android:summary="Check if your server supports SSL also known at HTTPS or encrypted upload."
+                android:key="serverSSL" />
         </PreferenceCategory>
 </PreferenceScreen>
                 
