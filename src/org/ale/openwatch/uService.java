@@ -103,8 +103,12 @@ public class uService extends Service{
     	String url = "https://" + getUploadURL() + "/uploadnocaptcha/";
     	return url;
     }
+    //TODO: TEST THIS
     public String urlServer(){ 
-    	String url = "http://" + getUploadURL() + "/uploadnocaptcha/";
+    	SharedPreferences owSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+    	String uploadPath = "/uploadnocaptch/";
+    	uploadPath = owSettings.getString(uploadPath, "/uploadnocaptcha/");
+    	String url = "http://" + getUploadURL() + uploadPath;
     	return url;
     }
     public String getUploadURL(){
