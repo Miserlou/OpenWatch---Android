@@ -108,27 +108,11 @@ public class uService extends Service{
     //TODO: TEST THIS
     public String urlServer(){ 
     	SharedPreferences owSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-    	String uploadPath = "/uploadnocaptch/";
-    	uploadPath = owSettings.getString(uploadPath, "/uploadnocaptcha/");
+    	String uploadPath = owSettings.getString("uploadPath", "/uploadnocaptcha/");
     	String url = "http://" + getUploadURL() + uploadPath;
-		//TODO: Why doesn't this toast come up? Is this function even getting called?
-        //Removed below line because it was crashing this routine. Keeping in here for curiosity sake.
-    	//new AlertDialog.Builder(this).setTitle("Argh").setMessage("http://" + getUploadURL() + uploadPath).setNegativeButton("Cancel", null).setPositiveButton("OK", null).setNeutralButton("No", null).show();  
-    	Toast.makeText(this, "http://" + getUploadURL() + uploadPath, Toast.LENGTH_LONG).show();
-        final int NOTIF_ID = 1234;  
-        
-        NotificationManager notifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);  
-        Notification note = new Notification(R.drawable.icon, "New E-mail", System.currentTimeMillis());  
-         
-        PendingIntent intent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);  
-        //note.setLatestEventInfo(this, "http://" + getUploadURL() + uploadPath, intent);  
-         
-        notifManager.notify(NOTIF_ID, note);  
-        // END OF NOTIFY TEST
     	return url;
     }
     public String getUploadURL(){
-		Toast.makeText(getApplicationContext(), "toast!", Toast.LENGTH_SHORT);
 		SharedPreferences owSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());  
 		String upload_url = owSettings.getString("uploadURL", "openwatch.net" );
 		return upload_url;
