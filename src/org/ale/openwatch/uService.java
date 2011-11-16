@@ -112,7 +112,8 @@ public class uService extends Service{
     	uploadPath = owSettings.getString(uploadPath, "/uploadnocaptcha/");
     	String url = "http://" + getUploadURL() + uploadPath;
 		//TODO: Why doesn't this toast come up? Is this function even getting called?
-        new AlertDialog.Builder(this).setTitle("Argh").setMessage("http://" + getUploadURL() + uploadPath).setNegativeButton("Cancel", null).setPositiveButton("OK", null).setNeutralButton("No", null).show();  
+        //Removed below line because it was crashing this routine. Keeping in here for curiosity sake.
+    	//new AlertDialog.Builder(this).setTitle("Argh").setMessage("http://" + getUploadURL() + uploadPath).setNegativeButton("Cancel", null).setPositiveButton("OK", null).setNeutralButton("No", null).show();  
     	Toast.makeText(this, "http://" + getUploadURL() + uploadPath, Toast.LENGTH_LONG).show();
         final int NOTIF_ID = 1234;  
         

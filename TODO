@@ -9,6 +9,7 @@
 * Enable "overt" recording mode
 * add "learn more" option to legal warning
 * more options for configuring your own server (port, url, etc)--
+* make the program throw an error if the uploading fails
 
 low priority/pie-in-sky
 * Translation
