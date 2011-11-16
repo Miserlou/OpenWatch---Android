@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 
+//TODO: Delete after testing upload
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -109,6 +111,19 @@ public class uService extends Service{
     	String uploadPath = "/uploadnocaptch/";
     	uploadPath = owSettings.getString(uploadPath, "/uploadnocaptcha/");
     	String url = "http://" + getUploadURL() + uploadPath;
+		//TODO: Why doesn't this toast come up? Is this function even getting called?
+        new AlertDialog.Builder(this).setTitle("Argh").setMessage("http://" + getUploadURL() + uploadPath).setNegativeButton("Cancel", null).setPositiveButton("OK", null).setNeutralButton("No", null).show();  
+    	Toast.makeText(this, "http://" + getUploadURL() + uploadPath, Toast.LENGTH_LONG).show();
+        final int NOTIF_ID = 1234;  
+        
+        NotificationManager notifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);  
+        Notification note = new Notification(R.drawable.icon, "New E-mail", System.currentTimeMillis());  
+         
+        PendingIntent intent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);  
+        //note.setLatestEventInfo(this, "http://" + getUploadURL() + uploadPath, intent);  
+         
+        notifManager.notify(NOTIF_ID, note);  
+        // END OF NOTIFY TEST
     	return url;
     }
     public String getUploadURL(){
