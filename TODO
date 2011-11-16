@@ -11,6 +11,11 @@
 * more options for configuring your own server (port, url, etc)--
 * make the program throw an error if the uploading fails
 
+questions:
+how can we tell how large server max upload is?
+how about uploading large files in chunks? a progress bar would be nice or a time estimate
+do we need a protocol to determine this?
+
 low priority/pie-in-sky
 * Translation
 * gps-based events
