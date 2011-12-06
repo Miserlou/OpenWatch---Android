@@ -5,6 +5,7 @@
   - how do we want to handle incoming calls, messages
 *add ability to delete files
   -this also requires password protection to change any settings
+* add video/audio preview option after recording so users can verify it actually recorded
 * comment code so that shit makes sense (this is on Ringo)
 * Enable "overt" recording mode
 * add "learn more" option to legal warning

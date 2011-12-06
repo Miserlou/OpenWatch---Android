@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
     
     @Override
     /* This is called when the activity is created (when the app is started).
-    It initialized the layout */
+    It initializes the layout */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -47,7 +47,6 @@ public class MainActivity extends Activity {
         
         vr = (VideoRecorder) findViewById(R.id.camcorder_preview);
         c = this;
-        
     }
     // TODO: Figure out what this does
     public void activateButton() {
