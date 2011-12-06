@@ -17,6 +17,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Environment;
@@ -135,9 +136,17 @@ public class uService extends Service{
                                      });
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+            	Toast toast=Toast.makeText(this, "Your upload failed! We're not sure why this happened, please contact the program developers!", Toast.LENGTH_LONG);
+            	toast.show();
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (Exception e) {
+            	Toast toast=Toast.makeText(this, "There was an error with the upload! Check that your upload URL is correct. If you haven't changed it, please contact the people who made this program.", 300000);
+            	toast.show();
+            	//TODO We need to notify users via the status bar when exceptions happen
+            } 
+        	catch (Exception e) {
+            	Toast toast=Toast.makeText(this, "Your upload failed! We're not sure why, please contact the program developers!", Toast.LENGTH_LONG);
+            	toast.show();
                 e.printStackTrace();
             }
 
