@@ -19,6 +19,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback{
 
@@ -79,6 +80,9 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
     File directory = new File(path).getParentFile();
     if (!directory.exists() && !directory.mkdirs()) {
       throw new IOException("Path to file could not be created.");
+      //TODO WHY DOESN'T THIS WORK?
+      //Toast toast=Toast.makeText(this, "There was an error saving your recording. Please contact the app developers if this persists.", Toast.LENGTH_LONG);
+      //toast.show();
     }
 
     WindowManager mWinMgr = (WindowManager)c.getSystemService(Context.WINDOW_SERVICE);
@@ -99,6 +103,7 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
         recorder.setVideoSize(320, 240);
     }
     recorder.setOutputFile(path);
+    //TODO If we have overt recording mode, I believe this is where it would be implemented but not sure. - Ringo
     Surface s = holder.getSurface();
     recorder.setPreviewDisplay(s);
     recorder.prepare();
