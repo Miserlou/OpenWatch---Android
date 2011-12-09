@@ -374,13 +374,20 @@ public class MainActivityGroup extends ActivityGroup {
 					.setPositiveButton("Okay!", null).show();
 			new AlertDialog.Builder(this)
 			.setMessage(
-					"Some jurisdictions may require consent to record in certain situations. While overtly recording public officials in public areas is usually allowed, different rules often come into play with covert recording or recording in areas where somebody has a 'reasonable expectation of privacy'. Be sure to check your local laws.")
-			.setPositiveButton("Okay!", null).show(); 
+					"While overtly recording public officials in public areas is almost always legal, different rules often come into play with covert recording or recording in areas where somebody has a 'reasonable expectation of privacy'. Be sure to check your local laws.")
+			.setPositiveButton("Okay!", null)
+			.setNegativeButton("Tell me more!", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		       		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.rcfp.org/can-we-tape"));
+		    		startActivity(browserIntent);
+		           }
+		       })
+			.show(); 
 			editor2 = prefs.edit();
 			editor2.putString("first_time", "shitballs");
 			editor2.commit();
 		}
-
+		
 		code = prefs.getString("code", "BBB");
 		codeLeft = code;
 
