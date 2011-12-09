@@ -7,7 +7,8 @@
   -this also requires password protection to change any settings
 * add video/audio preview option after recording so users can verify it actually recorded
 * comment code so that shit makes sense (this is on Ringo)
-* Enable "overt" recording mode
+* Add a "preview recording" option at the end of recording
+* Add an overt audio recording mode (what does this look like?)
 * add "learn more" option to legal warning
 * more options for configuring your own server (port, url, etc)--
 * make the program throw an error if the uploading fails

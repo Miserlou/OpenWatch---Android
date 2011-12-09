@@ -46,9 +46,16 @@ public class RecorderActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.playa);
-        
-        vr = (VideoRecorder) findViewById(R.id.camcorder_preview);
+        //Let's see if the user wants covert or overt recording and set the appropriate view
+        SharedPreferences owSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+    	boolean stealth = owSettings.getBoolean("stealth", true);
+    	if(owSettings.getBoolean("stealth", true) == true) {
+    		setContentView(R.layout.playa);
+        }
+    	else {
+    		setContentView(R.layout.playaovert);
+    	}
+    	vr = (VideoRecorder) findViewById(R.id.camcorder_preview);
         iv = (ImageView) findViewById(R.id.hider);
         co = this;
 
