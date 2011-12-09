@@ -18,10 +18,15 @@
                 android:title="Enter port"
                 android:key="uploadPort" android:name="Upload Port"/>
         <CheckBoxPreference
-                	android:title="SSL Enabled?"
+                android:title="SSL Enabled?"
         		android:defaultValue="false"
 		        android:summary="Check if your server supports SSL also known at HTTPS or encrypted upload."
                 android:key="serverSSL" />
+        <CheckBoxPreference
+                android:title="Stealth Recording?"
+        		android:defaultValue="true"
+		        android:summary="Should OpenWatch record in stealth mode?"
+                android:key="stealth" />
         </PreferenceCategory>
 </PreferenceScreen>
                 
