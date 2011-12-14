@@ -9,6 +9,7 @@ import java.util.List;
 
 import android.app.ActivityGroup;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -38,6 +39,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 /** TODO: When is this called? 
  */
@@ -130,14 +132,135 @@ public class MainActivityGroup extends ActivityGroup {
 		}
 		return false;
 	}
-
+		       
+	
+	
 	private void buildDoneDialog() {
-		AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
+		///XXX
+		AlertDialog.Builder previewQuestion = new AlertDialog.Builder(this);
+    	previewQuestion.setMessage("Do you want to preview your recording before uploading it?");
+		previewQuestion.setNegativeButton("No Thanks", null); 
+		previewQuestion.setPositiveButton("Sure!", new DialogInterface.OnClickListener() {
+			//TODO: SEE BELOW
+	        /** This code was pretty much directly ported from the menu button. If we could
+	         	change that function instead of repeating it here, that would be great. Note that this section
+	         	has been heavily commented so it can be understood unlike the original version. **/
+			public void onClick(DialogInterface dialog, int id) {
+	        	//AlertDialog ad;
+				//Setting up the custom dialog to display the files
+	   			final Dialog dialoog = new Dialog(MainActivityGroup.this, R.style.CustomDialogTheme);
+	   			dialoog.setContentView(R.layout.dialog);
+
+	   			final LayoutInflater factory = getLayoutInflater();
+	   			final View cView = factory.inflate(R.layout.dialog, null);
+	   			final ListView list = (ListView) cView.findViewById(R.id.list);
+	   			list.setVerticalScrollBarEnabled(true);
+	   			list.setStackFromBottom(true);
+	   			//Populate the list of files by calling getRecordingList()
+	   			ArrayList<String> listItems = getRecordingList();
+
+	   			//if (listItems == null) {
+	   			//	return false;
+	   			//}
+	   			//Add the array we populated to the dialog
+	   			ListItemsAdapter adapter = new ListItemsAdapter(listItems);
+	   			list.setAdapter(adapter);
+	   			//Create a listener for when a user selects a file. Asks if they want to view or upload
+	   			list.setOnItemClickListener(new OnItemClickListener() {
+
+	   				public void onItemClick(AdapterView<?> arg0, View arg1,
+	   						int arg2, long arg3) {
+	   					TextView tv = (TextView) (arg1.findViewById(R.id.text));
+	   					final String br = tv.getText().toString();
+
+	   					final CharSequence[] items = { getString(R.string.upload),
+	   							getString(R.string.play) };
+	   					AlertDialog.Builder builder = new AlertDialog.Builder(
+	   							MainActivityGroup.this);
+	   					builder.setTitle(getString(R.string.upload_or_play));
+	   					//Creates another listener for the user's upload/play selection
+	   					DialogInterface.OnClickListener DIO = new DialogInterface.OnClickListener() {
+	   						public void onClick(DialogInterface dialog, int item) {
+	   							switch (item) {
+	   							case 0:
+	   								//This section somehow uploads the file, not sure how
+	   								try {
+	   									File f = new File(Environment
+	   											.getExternalStorageDirectory()
+	   											.getAbsolutePath()
+	   											+ "/rpath.txt");
+	   									f.delete();
+	   									f.createNewFile();
+	   									FileOutputStream fOut = new FileOutputStream(
+	   											f);
+	   									OutputStreamWriter osw = new OutputStreamWriter(
+	   											fOut);
+	   									osw.write(Environment
+	   											.getExternalStorageDirectory()
+	   											.getAbsolutePath()
+	   											+ "/recordings/" + br);
+	   									osw.flush();
+	   									osw.close();
+	   								} catch (IOException e1) {
+	   									e1.printStackTrace();
+	   								}
+
+	   								Intent mainIntent = new Intent(
+	   										getBaseContext(),
+	   										DescribeActivity.class);
+	   								startActivity(mainIntent);
+	   								finish();
+	   								return;
+	   								//This displays the video of the user's choice
+	   							case 1:
+	   								Intent it;
+	   								Uri uri = Uri.parse(Environment
+	   										.getExternalStorageDirectory()
+	   										.getAbsolutePath()
+	   										+ "/recordings/" + br);
+	   								it = new Intent(Intent.ACTION_VIEW, uri);
+	   								it.setDataAndType(uri, "video/3gpp");
+	   								startActivity(it);
+	   								return;
+	   							}
+
+	   						}
+	   					};
+	   					builder.setItems(items, DIO);
+	   					AlertDialog alert = builder.create();
+	   					alert.show();
+	   					dialoog.cancel();
+
+	   				}
+
+	   			});
+
+	   			dialoog.setContentView(cView);
+	   			dialoog.show();
+	   			list.setTranscriptMode(ListView.TRANSCRIPT_MODE_DISABLED);
+	   			list.scrollTo(0, 0);
+	   			list.setSelection(0);
+
+	   			//return true;
+
+	        	   
+	        	   
+	        	//OnClick ends here
+	           }
+	       });
+		previewQuestion.show();
+
+		//XXX
+		Toast toast=Toast.makeText(this, "BUILDING DONE DIALOG", Toast.LENGTH_LONG);
+    	toast.show();
+	
+    	/** AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
 
 		alert2.setTitle(getString(R.string.recording_saved));
 		alert2.setMessage(getString(R.string.upload_recording_now));
 		final Context c = this;
 		alert2.setPositiveButton(getString(R.string.yes_upload),
+
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						mHandler.post(new Runnable() {
@@ -160,8 +283,10 @@ public class MainActivityGroup extends ActivityGroup {
 					}
 				});
 		alert2.show();
+	**/
 	}
-
+	
+ 
 	private void bindRecordService() {
 		r_servicedBind = bindService(new Intent(this, rService.class),
 				r_connection, Context.BIND_AUTO_CREATE);
@@ -202,7 +327,8 @@ public class MainActivityGroup extends ActivityGroup {
 			final ListView list = (ListView) cView.findViewById(R.id.list);
 			list.setVerticalScrollBarEnabled(true);
 			list.setStackFromBottom(true);
-
+			//XXXY
+			//TODO: This function shows available videos and displays them, can we do this at the end of recording?
 			ArrayList<String> listItems = getRecordingList();
 
 			if (listItems == null) {
@@ -308,7 +434,7 @@ public class MainActivityGroup extends ActivityGroup {
 			return (true);
 		default:
 			return super.onOptionsItemSelected(item);
-		}
+		} 
 	}
 
 	@Override
@@ -394,6 +520,7 @@ public class MainActivityGroup extends ActivityGroup {
 		Intent intent = new Intent(rService.ACTION_FOREGROUND);
 		intent.setClass(MainActivityGroup.this, rService.class);
 		startService(intent);
+
 		bindRecordService();
 		
 		// if activityGroup was started by widget, start the recorder immediately 
@@ -463,7 +590,6 @@ public class MainActivityGroup extends ActivityGroup {
 		prefEditor.putString("uploadURL", upload_url);
 		prefEditor.commit(); 
 	}
-
 	public ArrayList<String> getRecordingList() {
 		File folder = new File(Environment.getExternalStorageDirectory()
 				.getAbsolutePath()
