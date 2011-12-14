@@ -140,7 +140,46 @@ public class MainActivityGroup extends ActivityGroup {
 		///XXX
 		AlertDialog.Builder previewQuestion = new AlertDialog.Builder(this);
     	previewQuestion.setMessage("Do you want to preview your recording before uploading it?");
-		previewQuestion.setNegativeButton("No Thanks", null); 
+		previewQuestion.setNegativeButton("No Thanks", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Toast toast=Toast.makeText(getBaseContext(), "InTheCancel", Toast.LENGTH_LONG);
+		    	toast.show();
+		    	AlertDialog.Builder alert2 = new AlertDialog.Builder(maActivity);
+
+				alert2.setTitle(getString(R.string.recording_saved));
+				alert2.setMessage(getString(R.string.upload_recording_now));
+				//final Context c = this;
+				final Context c = getParent();
+				alert2.setPositiveButton(getString(R.string.yes_upload),
+
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int whichButton) {
+								mHandler.post(new Runnable() {
+
+									public void run() {
+										Intent mainIntent = new Intent(c,
+												DescribeActivity.class);
+										startActivity(mainIntent);
+										// u_service.start();
+									}
+								});
+
+								finish();
+							}
+						});
+				alert2.setNegativeButton(getString(R.string.no_quit),
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int whichButton) {
+								//finish();
+							}
+						});
+				alert2.show();
+			
+				
+			}
+		}); 
 		previewQuestion.setPositiveButton("Sure!", new DialogInterface.OnClickListener() {
 			//TODO: SEE BELOW
 	        /** This code was pretty much directly ported from the menu button. If we could
@@ -251,39 +290,7 @@ public class MainActivityGroup extends ActivityGroup {
 	       });
 		previewQuestion.setOnCancelListener(new OnCancelListener(){
 			public void onCancel(DialogInterface previewQuestion){
-				Toast toast=Toast.makeText(getBaseContext(), "InTheCancel", Toast.LENGTH_LONG);
-		    	toast.show();
-		    	AlertDialog.Builder alert2 = new AlertDialog.Builder(maActivity);
 
-				alert2.setTitle(getString(R.string.recording_saved));
-				alert2.setMessage(getString(R.string.upload_recording_now));
-				//final Context c = this;
-				final Context c = getParent();
-				alert2.setPositiveButton(getString(R.string.yes_upload),
-
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int whichButton) {
-								mHandler.post(new Runnable() {
-
-									public void run() {
-										Intent mainIntent = new Intent(c,
-												DescribeActivity.class);
-										startActivity(mainIntent);
-										// u_service.start();
-									}
-								});
-
-								finish();
-							}
-						});
-				alert2.setNegativeButton(getString(R.string.no_quit),
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int whichButton) {
-								//finish();
-							}
-						});
-				alert2.show();
-			
 			}
 		});
 		previewQuestion.show();
