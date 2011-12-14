@@ -14,6 +14,7 @@ import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -248,13 +249,20 @@ public class MainActivityGroup extends ActivityGroup {
 	        	//OnClick ends here
 	           }
 	       });
+		previewQuestion.setOnCancelListener(new OnCancelListener(){
+			public void onCancel(DialogInterface previewQuestion){
+				Toast toast=Toast.makeText(getBaseContext(), "InTheCancel", Toast.LENGTH_LONG);
+		    	toast.show();
+			
+			}
+		});
 		previewQuestion.show();
 
 		//XXX
 		Toast toast=Toast.makeText(this, "BUILDING DONE DIALOG", Toast.LENGTH_LONG);
     	toast.show();
 	
-    	/** AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
+    	AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
 
 		alert2.setTitle(getString(R.string.recording_saved));
 		alert2.setMessage(getString(R.string.upload_recording_now));
@@ -283,7 +291,6 @@ public class MainActivityGroup extends ActivityGroup {
 					}
 				});
 		alert2.show();
-	**/
 	}
 	
  
