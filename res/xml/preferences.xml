@@ -13,19 +13,19 @@
                 android:title="Enter Upload Path"
                 android:key="uploadPath" android:name="Upload Path"/>
         <EditTextPreference
-                android:summary="The port for your upload server. 80 is the default."
+                android:summary="The port for your upload server. 80 is the default. This feature does not work yet."
                 android:defaultValue="80"
                 android:title="Enter port"
                 android:key="uploadPort" android:name="Upload Port"/>
         <CheckBoxPreference
                 android:title="SSL Enabled?"
         		android:defaultValue="false"
-		        android:summary="Check if your server supports SSL also known at HTTPS or encrypted upload."
+		        android:summary="Check if your server supports SSL also known at HTTPS or encrypted upload. This feature does not work yet."
                 android:key="serverSSL" />
         <CheckBoxPreference
                 android:title="Stealth Recording?"
         		android:defaultValue="true"
-		        android:summary="Should OpenWatch record in stealth mode?"
+		        android:summary="Should openwatch hide during recording? If not, a preview of the video you film will be shown during recording."
                 android:key="stealth" />
         </PreferenceCategory>
 </PreferenceScreen>

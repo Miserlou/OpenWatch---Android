@@ -144,9 +144,7 @@ public class MainActivityGroup extends ActivityGroup {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				Toast toast=Toast.makeText(getBaseContext(), "InTheCancel", Toast.LENGTH_LONG);
-		    	toast.show();
-		    	AlertDialog.Builder alert2 = new AlertDialog.Builder(maActivity);
+				AlertDialog.Builder alert2 = new AlertDialog.Builder(maActivity);
 
 				alert2.setTitle(getString(R.string.recording_saved));
 				alert2.setMessage(getString(R.string.upload_recording_now));
@@ -206,6 +204,8 @@ public class MainActivityGroup extends ActivityGroup {
 	   			//Add the array we populated to the dialog
 	   			ListItemsAdapter adapter = new ListItemsAdapter(listItems);
 	   			list.setAdapter(adapter);
+	   			
+	   			
 	   			//Create a listener for when a user selects a file. Asks if they want to view or upload
 	   			list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -251,7 +251,7 @@ public class MainActivityGroup extends ActivityGroup {
 	   										DescribeActivity.class);
 	   								startActivity(mainIntent);
 	   								finish();
-	   								return;
+	   								//return;
 	   								//This displays the video of the user's choice
 	   							case 1:
 	   								Intent it;
@@ -262,7 +262,7 @@ public class MainActivityGroup extends ActivityGroup {
 	   								it = new Intent(Intent.ACTION_VIEW, uri);
 	   								it.setDataAndType(uri, "video/3gpp");
 	   								startActivity(it);
-	   								return;
+	   								//return;
 	   							}
 
 	   						}
@@ -270,7 +270,7 @@ public class MainActivityGroup extends ActivityGroup {
 	   					builder.setItems(items, DIO);
 	   					AlertDialog alert = builder.create();
 	   					alert.show();
-	   					dialoog.cancel();
+	   					//dialoog.cancel();
 
 	   				}
 
@@ -282,18 +282,9 @@ public class MainActivityGroup extends ActivityGroup {
 	   			list.scrollTo(0, 0);
 	   			list.setSelection(0);
 
-	   			//return true;
-
-	        	   
-	        	   
-	        	//OnClick ends here
-	           }
-	       });
-		previewQuestion.setOnCancelListener(new OnCancelListener(){
-			public void onCancel(DialogInterface previewQuestion){
-
+	   			//return true;	        	   
 			}
-		});
+	       });
 		previewQuestion.show();
 
 		//XXX

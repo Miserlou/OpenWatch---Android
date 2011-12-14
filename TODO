@@ -7,11 +7,11 @@
   -this also requires password protection to change any settings
 * add video/audio preview option after recording so users can verify it actually recorded
 * comment code so that shit makes sense (this is on Ringo)
-* Add a "preview recording" option at the end of recording
+* make pre-upload preview mode offer to upload after preview
+* make pre-upload preview mode automatically preview most recent file instead of displaying all files as options
+* add option to enable/disable auto-preview
 * Add an overt audio recording mode (what does this look like?)
-* add "learn more" option to legal warning
 * more options for configuring your own server (port, url, etc)--
-* make the program throw an error if the uploading fails
 
 questions:
 how can we tell how large server max upload is?
