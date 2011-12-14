@@ -151,7 +151,8 @@ public class MainActivityGroup extends ActivityGroup {
 				alert2.setTitle(getString(R.string.recording_saved));
 				alert2.setMessage(getString(R.string.upload_recording_now));
 				//final Context c = this;
-				final Context c = getParent();
+				//final Context c = getParent();
+				final Context c = getBaseContext();
 				alert2.setPositiveButton(getString(R.string.yes_upload),
 
 						new DialogInterface.OnClickListener() {
