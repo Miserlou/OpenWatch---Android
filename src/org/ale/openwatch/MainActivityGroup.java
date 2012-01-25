@@ -19,6 +19,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -317,7 +318,8 @@ public class MainActivityGroup extends ActivityGroup {
 
         // A little hacky, but otherwise we get an annoying black line where the
         // seam of the drawer's edge is.
-        ((FrameLayout)((ViewGroup) v).getChildAt(0)).setForeground(null);
+        if(Integer.parseInt(Build.VERSION.SDK) < 14)
+        	((FrameLayout)((ViewGroup) v).getChildAt(0)).setForeground(null);
         
     
         Intent j = new Intent(this, MainActivity.class);

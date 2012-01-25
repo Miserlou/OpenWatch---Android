@@ -164,7 +164,7 @@ public class rService extends Service{
         }
 
         // Fall back on the old API.
-        setForeground(true);
+        stopForeground(true);
     }
 
     /**
@@ -189,7 +189,7 @@ public class rService extends Service{
 
         // Fall back on the old API.  Note to cancel BEFORE changing the
         // foreground state, since we could be killed at that point.
-        setForeground(false);
+        stopForeground(false);
     }
 
 
