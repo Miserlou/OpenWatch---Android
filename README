@@ -1,6 +1,10 @@
 ==OpenWatch-Android==
 by Rich Jones
 
+### NOTICE ###
+
+This project is depricated. Please see http://github.com/OpenWatch/OpenWatch-Android for the latest code of the rewrite.
+
 ### About ###
 OpenWatch is a network-enabled secret recorder. It records secrets, secretly.
 This is the Android version.
