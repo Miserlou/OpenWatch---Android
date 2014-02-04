@@ -56,5 +56,7 @@
 	<!-- ***************************
 	     Preferences
 	     *************************** -->
+    <string name="configure">Configure</string>
+    <string name="set_preferences">Set OpenWatch Preferences</string>
 	
 </resources> 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory
+                android:title="Server Settings">
+        <EditTextPreference
+                android:summary="Set a custom upload server.  The default is openwatch.net"
+                android:defaultValue="openwatch.net"
+                android:title="Enter server URL"
+                android:key="uploadURL" android:name="Upload Server"/>
+        <EditTextPreference
+                android:summary="Set a custom upload path. The default is /uploadnocaptcha/"
+                android:defaultValue="/uploadnocaptcha/"
+                android:title="Enter Upload Path"
+                android:key="uploadPath" android:name="Upload Path"/>
+        <EditTextPreference
+                android:summary="The port for your upload server. 80 is the default. This feature does not work yet."
+                android:defaultValue="80"
+                android:title="Enter port"
+                android:key="uploadPort" android:name="Upload Port"/>
+        <CheckBoxPreference
+                android:title="SSL Enabled?"
+        		android:defaultValue="false"
+		        android:summary="Check if your server supports SSL also known at HTTPS or encrypted upload. This feature does not work yet."
+                android:key="serverSSL" />
+        <CheckBoxPreference
+                android:title="Stealth Recording?"
+        		android:defaultValue="true"
+		        android:summary="Should openwatch hide during recording? If not, a preview of the video you film will be shown during recording."
+                android:key="stealth" />
+        </PreferenceCategory>
+</PreferenceScreen>
+                

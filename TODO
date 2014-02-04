@@ -1,6 +1,28 @@
-* Auto-upload
+* Streaming (cooperq)
+* Add HTTPS Support
+* Add Tor Support (do some benchmarking)
 * Properly handle incoming calls
-* Translation??
+  - how do we want to handle incoming calls, messages
+*add ability to delete files
+  -this also requires password protection to change any settings
+* add video/audio preview option after recording so users can verify it actually recorded
+* comment code so that shit makes sense (this is on Ringo)
+* make pre-upload preview mode offer to upload after preview
+* make pre-upload preview mode automatically preview most recent file instead of displaying all files as options
+* add option to enable/disable auto-preview
+* Add an overt audio recording mode (what does this look like?)
+* more options for configuring your own server (port, url, etc)--
 
-v2.0:
-    Streaming?
+questions:
+how can we tell how large server max upload is?
+how about uploading large files in chunks? a progress bar would be nice or a time estimate
+do we need a protocol to determine this?
+
+low priority/pie-in-sky
+* Translation
+* gps-based events
+* add ability to delete based on timer
+* abillity to upload to youtube?
+* ability to add metadata gps time etc
+* ability to scrub metadata
+* call for backup feature

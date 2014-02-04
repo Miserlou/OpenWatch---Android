@@ -19,6 +19,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback{
 
@@ -70,26 +71,32 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
    * Starts a new recording.
    */
   public void start(Context c) throws IOException {
+	  // Makes sure the SD Card is mounted
     String state = android.os.Environment.getExternalStorageState();
     if(!state.equals(android.os.Environment.MEDIA_MOUNTED))  {
+        Toast toast=Toast.makeText(getContext(), "SD Card Not Mounted! Your recording may fail.", Toast.LENGTH_LONG);
+    	toast.show();
         throw new IOException("SD Card is not mounted.  It is " + state + ".");
     }
 
     // make sure the directory we plan to store the recording in exists
     File directory = new File(path).getParentFile();
     if (!directory.exists() && !directory.mkdirs()) {
-      throw new IOException("Path to file could not be created.");
+        Toast toast=Toast.makeText(getContext(), "There was an error saving your recording. Please contact the app developers if this persists. Directory does not exist", Toast.LENGTH_LONG);
+        toast.show();
+    	throw new IOException("Path to file could not be created.");
     }
 
     WindowManager mWinMgr = (WindowManager)c.getSystemService(Context.WINDOW_SERVICE);
     int displayWidth = mWinMgr.getDefaultDisplay().getWidth();
-
+    //Checks to see if we are on an old API version.
     if( (Integer.parseInt(Build.VERSION.SDK) >= 8) && (displayWidth >= 480)) {
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
         recorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
     }
     else{
+    	//Use old method for older versions of android
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
@@ -99,6 +106,7 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
         recorder.setVideoSize(320, 240);
     }
     recorder.setOutputFile(path);
+    //TODO If we have overt recording mode, I believe this is where it would be implemented but not sure. - Ringo
     Surface s = holder.getSurface();
     recorder.setPreviewDisplay(s);
     recorder.prepare();
@@ -114,6 +122,9 @@ public class VideoRecorder extends SurfaceView implements SurfaceHolder.Callback
         recorder.release();
     }
     catch(Exception e) {
+    	Toast toast=Toast.makeText(getContext(), "Unable to stop video recording. Contact app developers if this persists", Toast.LENGTH_LONG);
+    	toast.show();
+    	
     }
   }
   

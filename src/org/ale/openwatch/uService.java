@@ -4,18 +4,20 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 
+//TODO: Delete after testing upload
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Environment;
@@ -23,6 +25,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 /*
  * OpenWatch Uploader Service
@@ -60,8 +63,7 @@ public class uService extends Service{
     String privDesc = "";
     String title = "";
     String location = "XXX Unavailable XXX";
-    String secUrlServer = "https://openwatch.net/uploadnocaptcha/";
-    String urlServer = "http://openwatch.net/uploadnocaptcha/";
+    String defaultUploadUrl = "openwatch.net";
     String lineEnd = "\r\n";
     String twoHyphens = "--";
     String boundary =  "*****";
@@ -100,6 +102,21 @@ public class uService extends Service{
         }
         
     };
+    public String secUrlServer(){
+    	String url = "https://" + getUploadURL() + "/uploadnocaptcha/";
+    	return url;
+    }
+    public String urlServer(){ 
+    	SharedPreferences owSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+    	String uploadPath = owSettings.getString("uploadPath", "/uploadnocaptcha/");
+    	String url = "http://" + getUploadURL() + uploadPath;
+    	return url;
+    }
+    public String getUploadURL(){
+		SharedPreferences owSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());  
+		String upload_url = owSettings.getString("uploadURL", "openwatch.net" );
+		return upload_url;
+    }
 
 
     public void upload() {
@@ -108,7 +125,7 @@ public class uService extends Service{
 
         try {
                 InputStream serverInput = ClientHttpRequest.post(
-                        new java.net.URL(urlServer), 
+                        new java.net.URL(urlServer()), 
                         new Object[] {
                                       "name", title,
                                       "public_description", pubDesc,
@@ -118,9 +135,17 @@ public class uService extends Service{
                                      });
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+            	Toast toast=Toast.makeText(this, "Your upload failed! We're not sure why this happened, please contact the program developers!", Toast.LENGTH_LONG);
+            	toast.show();
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (Exception e) {
+            	Toast toast=Toast.makeText(this, "There was an error with the upload! Check that your upload URL is correct. If you haven't changed it, please contact the people who made this program.", 300000);
+            	toast.show();
+            	//TODO We need to notify users via the status bar when exceptions happen
+            } 
+        	catch (Exception e) {
+            	Toast toast=Toast.makeText(this, "Your upload failed! We're not sure why, please contact the program developers!", Toast.LENGTH_LONG);
+            	toast.show();
                 e.printStackTrace();
             }
 
