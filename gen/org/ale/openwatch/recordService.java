@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/tuttle/workspace/OpenWatch/src/org/ale/openwatch/recordService.aidl
+ * Original file: C:\\Users\\Dbro\\Documents\\git\\OpenWatchACLU\\OpenWatchACLU\\src\\org\\aclu\\nj\\recordService.aidl
  */
 package org.ale.openwatch;
 public interface recordService extends android.os.IInterface
